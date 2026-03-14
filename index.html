@@ -3,400 +3,858 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SquachAcers™ — Apex Predator Boot & Squach Align Technology</title>
-<meta name="description" content="Apex Predator Boot. Squach Align foot scanning technology. Patent pending. EST. 2026.">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<title>SquachAcers™ — Apex Predator</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
 :root {
-  --black: #06080f; --deep: #0c0c18; --card: #0f1420; --border: #1a2035;
-  --orange: #ff6b1a; --teal: #00d4c8; --gold: #f0a830; --white: #f0f4ff; --muted: #6b7fa0;
+  --bg: #f5f2ee;
+  --black: #0a0a08;
+  --accent: #ff4500;
+  --teal: #00a896;
+  --gray: #8a8a7a;
+  --light: #ebe8e2;
+  --card: #ffffff;
+  --border: #e0dcd4;
 }
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; }
-body { background: var(--black); color: var(--white); font-family: 'DM Sans', sans-serif; font-weight: 300; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
-
-/* STARS */
-body::before { content: ''; position: fixed; inset: 0; background-image: radial-gradient(1px 1px at 10% 15%, rgba(255,255,255,0.6) 0%, transparent 100%), radial-gradient(1px 1px at 25% 40%, rgba(255,255,255,0.4) 0%, transparent 100%), radial-gradient(1.5px 1.5px at 40% 10%, rgba(255,255,255,0.5) 0%, transparent 100%), radial-gradient(1px 1px at 60% 30%, rgba(255,255,255,0.3) 0%, transparent 100%), radial-gradient(1px 1px at 75% 60%, rgba(255,255,255,0.6) 0%, transparent 100%), radial-gradient(1.5px 1.5px at 85% 20%, rgba(255,255,255,0.4) 0%, transparent 100%), radial-gradient(1px 1px at 90% 75%, rgba(255,255,255,0.5) 0%, transparent 100%), radial-gradient(1px 1px at 15% 70%, rgba(255,255,255,0.3) 0%, transparent 100%), radial-gradient(1px 1px at 50% 85%, rgba(255,255,255,0.4) 0%, transparent 100%), radial-gradient(1.5px 1.5px at 35% 55%, rgba(255,255,255,0.5) 0%, transparent 100%); pointer-events: none; z-index: 0; animation: star-twinkle 6s ease-in-out infinite alternate; }
-@keyframes star-twinkle { 0%{opacity:0.7} 100%{opacity:1} }
+body { background: var(--bg); color: var(--black); font-family: 'Space Grotesk', sans-serif; font-weight: 300; overflow-x: hidden; }
 
 /* SPLASH */
-#splash { position: fixed; inset: 0; z-index: 9999; background: var(--black); display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; overflow: hidden; transition: opacity 0.9s ease, transform 0.9s ease; -webkit-tap-highlight-color: transparent; }
-#splash.hide { opacity: 0; pointer-events: none; transform: scale(1.04); }
-#splash::before { content: ''; position: absolute; inset: 0; background-image: radial-gradient(1px 1px at 8% 12%, rgba(255,255,255,0.8) 0%, transparent 100%), radial-gradient(1.5px 1.5px at 22% 35%, rgba(255,255,255,0.5) 0%, transparent 100%), radial-gradient(1px 1px at 38% 8%, rgba(255,255,255,0.7) 0%, transparent 100%), radial-gradient(1px 1px at 55% 25%, rgba(255,255,255,0.4) 0%, transparent 100%), radial-gradient(1.5px 1.5px at 72% 15%, rgba(255,255,255,0.6) 0%, transparent 100%), radial-gradient(1px 1px at 88% 40%, rgba(255,255,255,0.5) 0%, transparent 100%), radial-gradient(1px 1px at 15% 65%, rgba(255,255,255,0.4) 0%, transparent 100%), radial-gradient(1px 1px at 45% 72%, rgba(255,255,255,0.6) 0%, transparent 100%), radial-gradient(1.5px 1.5px at 78% 68%, rgba(255,255,255,0.5) 0%, transparent 100%), radial-gradient(1px 1px at 92% 80%, rgba(255,255,255,0.7) 0%, transparent 100%); animation: twinkle 4s ease-in-out infinite alternate; }
-@keyframes twinkle { 0%{opacity:0.6} 100%{opacity:1} }
-.splash-scan-ring { position: absolute; width: 280px; height: 280px; border-radius: 50%; border: 1px solid rgba(0,212,200,0.3); z-index: 2; animation: scan-spin 6s linear infinite; }
-.splash-scan-ring::before { content: ''; position: absolute; top: -4px; left: 50%; width: 8px; height: 8px; border-radius: 50%; background: var(--teal); box-shadow: 0 0 12px var(--teal), 0 0 24px var(--teal); transform: translateX(-50%); }
-@keyframes scan-spin { 0%{transform:rotate(0deg)} 100%{transform:rotate(360deg)} }
-.splash-scan-ring2 { position: absolute; width: 200px; height: 200px; border-radius: 50%; border: 1px dashed rgba(255,107,26,0.2); z-index: 2; animation: scan-spin 10s linear infinite reverse; }
-.splash-boot-wrap { position: relative; z-index: 3; animation: boot-hover 3s ease-in-out infinite; filter: drop-shadow(0 0 40px rgba(255,107,26,0.5)) drop-shadow(0 0 80px rgba(0,212,200,0.2)); }
-@keyframes boot-hover { 0%,100%{transform:translateY(0) rotate(-3deg)} 50%{transform:translateY(-20px) rotate(3deg)} }
-.splash-ground { position: absolute; bottom: 80px; left: 10%; right: 10%; height: 1px; background: linear-gradient(90deg, transparent, var(--orange), var(--teal), transparent); animation: ground-pulse 2s ease-in-out infinite alternate; }
-@keyframes ground-pulse { 0%{opacity:0.3} 100%{opacity:1} }
-.splash-brand { font-family: 'Bebas Neue', sans-serif; font-size: clamp(44px,10vw,72px); letter-spacing: 0.12em; background: linear-gradient(135deg, var(--white) 0%, var(--orange) 50%, var(--teal) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; position: relative; z-index: 3; text-align: center; margin-top: 20px; animation: fadein 0.8s ease 0.3s both; }
-.splash-sub { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.5em; color: rgba(0,212,200,0.7); text-transform: uppercase; position: relative; z-index: 3; text-align: center; margin-top: 6px; animation: fadein 0.8s ease 0.5s both; }
-.splash-tap { position: absolute; bottom: 40px; font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.4em; color: rgba(255,255,255,0.3); text-transform: uppercase; animation: blink 1.6s ease-in-out infinite, fadein 0.8s ease 1.2s both; z-index: 5; }
-@keyframes blink { 0%,100%{opacity:0.2} 50%{opacity:0.8} }
-@keyframes fadein { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
-@keyframes fadeUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
+#splash {
+  position: fixed; inset: 0; z-index: 9999;
+  background: var(--black);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  cursor: pointer; overflow: hidden;
+  transition: opacity 1s ease, transform 1s ease;
+}
+#splash.hide { opacity: 0; pointer-events: none; transform: scale(1.02); }
+
+.splash-line { position: absolute; background: rgba(255,255,255,0.03); }
+.splash-line.h { height: 1px; left: 0; right: 0; }
+.splash-line.v { width: 1px; top: 0; bottom: 0; }
+
+.splash-counter {
+  font-family: 'Space Mono', monospace;
+  font-size: clamp(120px, 25vw, 220px);
+  color: rgba(255,255,255,0.04);
+  position: absolute;
+  font-weight: 700;
+  letter-spacing: -0.05em;
+  animation: counter-up 3s ease forwards;
+  user-select: none;
+}
+@keyframes counter-up { 0%{opacity:0;transform:translateY(40px)} 20%{opacity:1} 100%{opacity:1;transform:translateY(0)} }
+
+.splash-logo-wrap {
+  position: relative; z-index: 3;
+  display: flex; flex-direction: column; align-items: center;
+  animation: splash-reveal 1s ease 0.5s both;
+}
+@keyframes splash-reveal { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+
+.splash-wordmark {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(32px, 7vw, 64px);
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+.splash-wordmark span { color: var(--accent); }
+
+.splash-divider {
+  width: 100%; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  margin: 20px 0;
+}
+
+.splash-tagline {
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  color: rgba(255,255,255,0.3);
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+}
+
+.splash-dot {
+  position: absolute; border-radius: 50%;
+  background: var(--accent); opacity: 0;
+  animation: dot-pulse 0.8s ease 2s forwards;
+}
+@keyframes dot-pulse { 0%{opacity:0;transform:scale(0)} 50%{opacity:1;transform:scale(1.5)} 100%{opacity:0.6;transform:scale(1)} }
+
+.splash-enter {
+  position: absolute; bottom: 48px;
+  font-family: 'Space Mono', monospace;
+  font-size: 10px; letter-spacing: 0.4em;
+  color: rgba(255,255,255,0.2);
+  text-transform: uppercase;
+  animation: blink 2s ease-in-out infinite 2s both;
+  display: flex; align-items: center; gap: 12px;
+}
+.splash-enter::before, .splash-enter::after {
+  content: ''; display: block;
+  width: 40px; height: 1px;
+  background: rgba(255,255,255,0.15);
+}
+@keyframes blink { 0%,100%{opacity:0.2} 50%{opacity:0.7} }
 
 /* NAV */
-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 18px 40px; display: flex; align-items: center; justify-content: space-between; background: linear-gradient(180deg, rgba(6,8,15,0.97) 0%, transparent 100%); backdrop-filter: blur(10px); }
-.nav-logo { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 0.15em; background: linear-gradient(135deg, var(--white), var(--orange)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; text-decoration: none; }
-.nav-tag { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.3em; color: var(--muted); text-transform: uppercase; }
-.nav-store { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.2em; color: var(--muted); text-transform: uppercase; text-decoration: none; transition: color 0.2s; border: 1px solid var(--border); padding: 6px 14px; }
-.nav-store:hover { color: var(--white); border-color: var(--orange); }
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  padding: 0 48px;
+  height: 64px;
+  display: flex; align-items: center; justify-content: space-between;
+  border-bottom: 1px solid var(--border);
+  background: rgba(245,242,238,0.95);
+  backdrop-filter: blur(20px);
+}
+.nav-logo {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700; font-size: 16px;
+  letter-spacing: -0.02em; color: var(--black);
+  text-decoration: none;
+}
+.nav-logo span { color: var(--accent); }
+.nav-links { display: flex; align-items: center; gap: 32px; }
+.nav-link {
+  font-family: 'Space Mono', monospace;
+  font-size: 10px; letter-spacing: 0.2em;
+  color: var(--gray); text-transform: uppercase;
+  text-decoration: none; transition: color 0.2s;
+}
+.nav-link:hover { color: var(--black); }
+.nav-cta {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600; font-size: 12px;
+  background: var(--black); color: var(--bg);
+  padding: 8px 20px; text-decoration: none;
+  transition: background 0.2s;
+  letter-spacing: 0.02em;
+}
+.nav-cta:hover { background: var(--accent); }
 
 /* HERO */
-.hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 120px 24px 60px; position: relative; z-index: 1; }
-.hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 100% 60% at 50% 0%, rgba(255,107,26,0.1) 0%, transparent 60%), radial-gradient(ellipse 60% 40% at 80% 80%, rgba(0,212,200,0.06) 0%, transparent 60%); pointer-events: none; }
-.hero-eyebrow { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.6em; color: var(--teal); text-transform: uppercase; margin-bottom: 24px; opacity: 0; animation: fadeUp 0.8s 0.2s forwards; }
-.hero-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(64px,14vw,160px); line-height: 0.85; background: linear-gradient(160deg, var(--white) 0%, var(--orange) 60%, var(--gold) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 8px; opacity: 0; animation: fadeUp 1s 0.3s forwards; }
-.hero-title-sub { font-family: 'Bebas Neue', sans-serif; font-size: clamp(16px,4vw,40px); letter-spacing: 0.3em; color: var(--muted); margin-bottom: 32px; opacity: 0; animation: fadeUp 1s 0.45s forwards; }
-.hero-desc { font-size: clamp(14px,2vw,17px); color: var(--muted); max-width: 500px; line-height: 1.8; margin: 0 auto 40px; opacity: 0; animation: fadeUp 1s 0.6s forwards; }
-.hero-desc strong { color: var(--white); font-weight: 500; }
-.hero-badges { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; opacity: 0; animation: fadeUp 1s 0.75s forwards; }
-.hero-badge { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase; padding: 5px 12px; border: 1px solid; border-radius: 2px; }
-.badge-orange { color: var(--orange); border-color: rgba(255,107,26,0.3); background: rgba(255,107,26,0.06); }
-.badge-teal { color: var(--teal); border-color: rgba(0,212,200,0.3); background: rgba(0,212,200,0.06); }
-.badge-gold { color: var(--gold); border-color: rgba(240,168,48,0.3); background: rgba(240,168,48,0.06); }
+.hero {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding-top: 64px;
+  position: relative;
+}
+@media (max-width: 768px) { .hero { grid-template-columns: 1fr; } .hero-right { display: none; } }
 
-/* COLORWAYS */
-.colorways { position: relative; z-index: 1; padding: 60px 24px 100px; background: radial-gradient(ellipse 80% 50% at 50% 50%, rgba(255,107,26,0.05) 0%, transparent 70%); }
-.section-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.5em; color: var(--orange); text-transform: uppercase; margin-bottom: 16px; }
-.section-line { width: 60px; height: 1px; background: linear-gradient(90deg, var(--orange), var(--teal)); margin-bottom: 32px; }
-.section-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(36px,6vw,72px); line-height: 0.9; background: linear-gradient(135deg, var(--white), var(--orange)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 16px; }
-.section-body { font-size: 15px; line-height: 1.8; color: var(--muted); max-width: 520px; margin-bottom: 60px; }
-.colorways-row { display: flex; justify-content: center; align-items: flex-end; gap: 16px; flex-wrap: wrap; max-width: 1200px; margin: 0 auto; }
-.colorway-card { flex: 0 0 160px; text-align: center; animation: float var(--fd,4s) var(--fdelay,0s) ease-in-out infinite alternate; transition: transform 0.3s; }
-.colorway-card.hero-boot { flex: 0 0 210px; }
-.colorway-card:hover { transform: translateY(-8px) scale(1.03); }
-@keyframes float { 0%{transform:translateY(0)} 100%{transform:translateY(-14px)} }
-.boot-visual { width: 100%; aspect-ratio: 2/3; border-radius: 6px; background: linear-gradient(135deg, var(--card), var(--deep)); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; margin-bottom: 14px; position: relative; overflow: hidden; transition: border-color 0.3s, box-shadow 0.3s; }
-.colorway-card:hover .boot-visual { border-color: var(--cv-color, var(--orange)); box-shadow: 0 16px 48px var(--cv-glow, rgba(255,107,26,0.15)); }
-.boot-visual::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 50% 50%, var(--cv-bg, rgba(255,107,26,0.08)) 0%, transparent 70%); }
-.boot-emoji { font-size: 64px; position: relative; z-index: 2; transition: transform 0.3s; filter: drop-shadow(0 8px 20px rgba(0,0,0,0.6)); }
-.colorway-card.hero-boot .boot-emoji { font-size: 80px; }
-.colorway-card:hover .boot-emoji { transform: scale(1.1) rotate(-5deg); }
-.boot-name { font-family: 'Bebas Neue', sans-serif; font-size: 16px; letter-spacing: 0.15em; color: var(--white); margin-bottom: 4px; }
-.colorway-card.hero-boot .boot-name { font-size: 20px; }
-.boot-sub { font-family: 'DM Mono', monospace; font-size: 8px; letter-spacing: 0.2em; color: var(--muted); text-transform: uppercase; margin-bottom: 8px; }
-.boot-badge { display: inline-block; font-family: 'DM Mono', monospace; font-size: 8px; letter-spacing: 0.15em; text-transform: uppercase; padding: 3px 8px; border: 1px solid; border-radius: 2px; }
+.hero-left {
+  padding: 80px 48px;
+  display: flex; flex-direction: column; justify-content: center;
+  border-right: 1px solid var(--border);
+  position: relative;
+}
+
+.hero-number {
+  font-family: 'Space Mono', monospace;
+  font-size: 10px; letter-spacing: 0.4em;
+  color: var(--gray); text-transform: uppercase;
+  margin-bottom: 32px;
+  display: flex; align-items: center; gap: 12px;
+}
+.hero-number::before {
+  content: '01'; font-size: 10px;
+  color: var(--accent); font-weight: 700;
+}
+.hero-number::after {
+  content: ''; flex: 1; height: 1px; background: var(--border);
+}
+
+.hero-h1 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(56px, 8vw, 96px);
+  font-weight: 700;
+  line-height: 0.92;
+  letter-spacing: -0.04em;
+  color: var(--black);
+  margin-bottom: 32px;
+}
+.hero-h1 em { color: var(--accent); font-style: normal; }
+
+.hero-body {
+  font-size: 15px; line-height: 1.8;
+  color: var(--gray); max-width: 420px;
+  margin-bottom: 48px; font-weight: 400;
+}
+.hero-body strong { color: var(--black); font-weight: 600; }
+
+.hero-stats {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 1px; background: var(--border);
+  border: 1px solid var(--border);
+  margin-bottom: 48px;
+}
+.hero-stat {
+  background: var(--bg); padding: 20px 16px;
+  text-align: center;
+}
+.stat-num {
+  font-family: 'Space Mono', monospace;
+  font-size: 22px; font-weight: 700;
+  color: var(--black); display: block;
+  margin-bottom: 4px;
+}
+.stat-label {
+  font-family: 'Space Mono', monospace;
+  font-size: 8px; letter-spacing: 0.2em;
+  color: var(--gray); text-transform: uppercase;
+}
+
+.hero-actions { display: flex; gap: 12px; }
+.btn-primary {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600; font-size: 13px;
+  background: var(--black); color: var(--bg);
+  padding: 14px 32px; text-decoration: none;
+  transition: all 0.2s; display: inline-block;
+  letter-spacing: -0.01em;
+}
+.btn-primary:hover { background: var(--accent); }
+.btn-ghost {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 500; font-size: 13px;
+  background: transparent; color: var(--black);
+  padding: 14px 32px; text-decoration: none;
+  border: 1px solid var(--border);
+  transition: all 0.2s; display: inline-block;
+}
+.btn-ghost:hover { border-color: var(--black); }
+
+.hero-right {
+  position: relative; background: var(--light);
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+}
+.hero-right-bg {
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, var(--light) 0%, #e8e4dc 100%);
+}
+.hero-boot-display {
+  position: relative; z-index: 2;
+  display: flex; align-items: center; justify-content: center;
+  animation: boot-breathe 4s ease-in-out infinite;
+}
+@keyframes boot-breathe { 0%,100%{transform:translateY(0) rotate(-5deg)} 50%{transform:translateY(-20px) rotate(-2deg)} }
+
+.hero-boot-label {
+  position: absolute; bottom: 48px; left: 48px;
+  font-family: 'Space Mono', monospace;
+  font-size: 9px; letter-spacing: 0.3em;
+  color: var(--gray); text-transform: uppercase;
+}
+.hero-boot-label span {
+  display: block; font-size: 18px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700; color: var(--black);
+  letter-spacing: -0.02em; margin-top: 4px;
+}
+
+.hero-cross {
+  position: absolute; top: 48px; right: 48px;
+  width: 20px; height: 20px;
+}
+.hero-cross::before { content: ''; position: absolute; top: 50%; left: 0; right: 0; height: 1px; background: var(--gray); }
+.hero-cross::after { content: ''; position: absolute; left: 50%; top: 0; bottom: 0; width: 1px; background: var(--gray); }
+
+/* COLORWAYS SECTION */
+.colorways {
+  border-top: 1px solid var(--border);
+  padding: 80px 48px;
+  position: relative;
+}
+.section-header {
+  display: flex; align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 64px;
+  gap: 24px; flex-wrap: wrap;
+}
+.section-num {
+  font-family: 'Space Mono', monospace;
+  font-size: 9px; letter-spacing: 0.4em;
+  color: var(--accent); text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.section-h2 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(32px, 5vw, 56px);
+  font-weight: 700; letter-spacing: -0.03em;
+  line-height: 0.95; color: var(--black);
+}
+.section-desc {
+  font-size: 14px; color: var(--gray);
+  max-width: 320px; line-height: 1.7;
+  font-weight: 400;
+}
+
+.colorways-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1px; background: var(--border);
+  border: 1px solid var(--border);
+}
+@media (max-width: 900px) { .colorways-grid { grid-template-columns: repeat(2, 1fr); } .colorways { padding: 60px 24px; } }
+@media (max-width: 480px) { .colorways-grid { grid-template-columns: 1fr; } }
+
+.cw-card {
+  background: var(--card);
+  padding: 32px 24px 24px;
+  transition: background 0.3s;
+  cursor: pointer; position: relative;
+  overflow: hidden;
+}
+.cw-card:hover { background: var(--black); }
+.cw-card:hover .cw-name { color: #fff; }
+.cw-card:hover .cw-code { color: rgba(255,255,255,0.4); }
+.cw-card:hover .cw-tag { border-color: rgba(255,255,255,0.2); color: rgba(255,255,255,0.5); }
+.cw-card:hover .cw-swatch { transform: scale(1.1); }
+
+.cw-swatch {
+  width: 48px; height: 48px; border-radius: 50%;
+  margin-bottom: 20px; transition: transform 0.3s;
+  position: relative;
+}
+.cw-swatch::after {
+  content: ''; position: absolute; inset: -4px;
+  border-radius: 50%; border: 1px solid transparent;
+  transition: border-color 0.3s;
+}
+.cw-card:hover .cw-swatch::after { border-color: rgba(255,255,255,0.2); }
+
+.cw-name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600; font-size: 16px;
+  letter-spacing: -0.02em; color: var(--black);
+  margin-bottom: 4px; transition: color 0.3s;
+}
+.cw-code {
+  font-family: 'Space Mono', monospace;
+  font-size: 9px; color: var(--gray);
+  letter-spacing: 0.2em; text-transform: uppercase;
+  margin-bottom: 16px; transition: color 0.3s;
+}
+.cw-tag {
+  display: inline-block; font-family: 'Space Mono', monospace;
+  font-size: 8px; letter-spacing: 0.2em;
+  text-transform: uppercase; padding: 3px 8px;
+  border: 1px solid var(--border); color: var(--gray);
+  transition: all 0.3s;
+}
+.cw-tag.hero { border-color: var(--accent); color: var(--accent); }
 
 /* SPECS */
-.specs-section { position: relative; z-index: 1; }
-.section-inner { max-width: 1100px; margin: 0 auto; padding: 80px 40px; }
-.specs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 2px; margin-top: 48px; }
-.spec-card { background: var(--card); border: 1px solid var(--border); padding: 32px 28px; position: relative; overflow: hidden; transition: border-color 0.3s; }
-.spec-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--sc, var(--orange)), transparent); opacity: 0; transition: opacity 0.3s; }
-.spec-card:hover::before { opacity: 1; }
-.spec-card:hover { border-color: rgba(255,107,26,0.2); }
-.spec-icon { font-size: 26px; margin-bottom: 14px; }
-.spec-name { font-family: 'Bebas Neue', sans-serif; font-size: 19px; letter-spacing: 0.1em; color: var(--white); margin-bottom: 8px; }
-.spec-detail { font-size: 13px; color: var(--muted); line-height: 1.7; }
-.spec-value { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--orange); letter-spacing: 0.2em; margin-top: 8px; text-transform: uppercase; }
+.specs {
+  border-top: 1px solid var(--border);
+  display: grid; grid-template-columns: 1fr 1fr;
+}
+@media (max-width: 768px) { .specs { grid-template-columns: 1fr; } }
+
+.specs-left {
+  padding: 80px 48px;
+  border-right: 1px solid var(--border);
+}
+@media (max-width: 768px) { .specs-left { padding: 60px 24px; border-right: none; border-bottom: 1px solid var(--border); } }
+
+.specs-right { padding: 80px 48px; }
+@media (max-width: 768px) { .specs-right { padding: 60px 24px; } }
+
+.spec-list { display: flex; flex-direction: column; gap: 0; margin-top: 48px; border: 1px solid var(--border); }
+.spec-row {
+  display: flex; align-items: flex-start;
+  gap: 24px; padding: 20px 24px;
+  border-bottom: 1px solid var(--border);
+  transition: background 0.2s;
+}
+.spec-row:last-child { border-bottom: none; }
+.spec-row:hover { background: var(--light); }
+.spec-row-num {
+  font-family: 'Space Mono', monospace;
+  font-size: 10px; color: var(--accent);
+  font-weight: 700; flex-shrink: 0; margin-top: 2px;
+}
+.spec-row-content {}
+.spec-row-name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600; font-size: 14px;
+  color: var(--black); margin-bottom: 4px;
+  letter-spacing: -0.01em;
+}
+.spec-row-detail {
+  font-size: 12px; color: var(--gray); line-height: 1.6;
+}
+.spec-row-val {
+  font-family: 'Space Mono', monospace;
+  font-size: 9px; color: var(--teal);
+  letter-spacing: 0.2em; text-transform: uppercase;
+  margin-top: 6px;
+}
 
 /* SQUACH ALIGN */
-.align-section { position: relative; z-index: 1; overflow: hidden; background: linear-gradient(180deg, transparent, rgba(0,212,200,0.03), transparent); }
-.align-inner { max-width: 1100px; margin: 0 auto; padding: 100px 40px; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
-@media (max-width: 768px) { .align-inner { grid-template-columns: 1fr; gap: 48px; padding: 60px 20px; } .colorways { padding: 40px 16px 80px; } .section-inner { padding: 60px 20px; } nav { padding: 16px 20px; } .nav-tag { display: none; } }
+.align {
+  border-top: 1px solid var(--border);
+  background: var(--black); color: #fff;
+  padding: 100px 48px;
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 80px; align-items: center;
+}
+@media (max-width: 768px) { .align { grid-template-columns: 1fr; gap: 48px; padding: 60px 24px; } }
 
-.align-visual { position: relative; display: flex; align-items: center; justify-content: center; min-height: 400px; }
-.align-ring { position: absolute; width: 320px; height: 320px; border-radius: 50%; border: 1px dashed rgba(0,212,200,0.12); animation: slow-spin 12s linear infinite; }
-.align-ring2 { position: absolute; width: 400px; height: 400px; border-radius: 50%; border: 1px dashed rgba(255,107,26,0.08); animation: slow-spin 18s linear infinite reverse; }
-@keyframes slow-spin { 0%{transform:rotate(0deg)} 100%{transform:rotate(360deg)} }
-.align-phone { width: 190px; height: 360px; background: var(--card); border: 2px solid rgba(0,212,200,0.3); border-radius: 30px; position: relative; z-index: 3; overflow: hidden; box-shadow: 0 40px 80px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,255,255,0.04), 0 0 40px rgba(0,212,200,0.1); animation: phone-float 4s ease-in-out infinite alternate; }
-@keyframes phone-float { 0%{transform:translateY(0) rotate(-2deg)} 100%{transform:translateY(-16px) rotate(2deg)} }
-.align-phone::before { content: ''; position: absolute; top: 10px; left: 50%; transform: translateX(-50%); width: 50px; height: 4px; background: rgba(0,212,200,0.3); border-radius: 2px; z-index: 5; }
-.align-screen { position: absolute; inset: 22px 6px 6px; background: #010d0d; border-radius: 22px; overflow: hidden; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-.scan-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(0,212,200,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(0,212,200,0.06) 1px, transparent 1px); background-size: 18px 18px; animation: grid-pulse 3s ease-in-out infinite alternate; }
-@keyframes grid-pulse { 0%{opacity:0.4} 100%{opacity:1} }
-.scan-beam { position: absolute; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--teal), transparent); box-shadow: 0 0 12px var(--teal), 0 0 24px rgba(0,212,200,0.5); animation: scan-move 2.5s ease-in-out infinite; }
-@keyframes scan-move { 0%{top:10%;opacity:0} 15%{opacity:1} 85%{opacity:1} 100%{top:85%;opacity:0} }
-.scan-foot-icon { font-size: 70px; position: relative; z-index: 2; animation: foot-glow 2.5s ease-in-out infinite; }
-@keyframes foot-glow { 0%,100%{filter:drop-shadow(0 0 6px rgba(0,212,200,0.4))} 50%{filter:drop-shadow(0 0 18px rgba(0,212,200,0.9)) drop-shadow(0 0 36px rgba(0,212,200,0.4))} }
-.scan-readout { position: absolute; bottom: 12px; left: 6px; right: 6px; font-family: 'DM Mono', monospace; font-size: 7px; color: var(--teal); letter-spacing: 0.15em; text-align: center; animation: readout-blink 1.2s ease-in-out infinite; }
-@keyframes readout-blink { 0%,100%{opacity:0.4} 50%{opacity:1} }
-.scan-corner { position: absolute; width: 14px; height: 14px; border-color: var(--teal); border-style: solid; opacity: 0.6; }
-.scan-corner.tl { top: 8px; left: 8px; border-width: 2px 0 0 2px; }
-.scan-corner.tr { top: 8px; right: 8px; border-width: 2px 2px 0 0; }
-.scan-corner.bl { bottom: 24px; left: 8px; border-width: 0 0 2px 2px; }
-.scan-corner.br { bottom: 24px; right: 8px; border-width: 0 2px 2px 0; }
+.align-left .section-num { color: var(--teal); }
+.align-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(40px, 6vw, 72px);
+  font-weight: 700; letter-spacing: -0.04em;
+  line-height: 0.9; margin-bottom: 24px;
+}
+.align-title span { color: var(--teal); }
+.align-body { font-size: 15px; line-height: 1.8; color: rgba(255,255,255,0.5); margin-bottom: 40px; }
+.align-body strong { color: #fff; font-weight: 600; }
 
-.align-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.5em; color: var(--teal); text-transform: uppercase; margin-bottom: 16px; }
-.align-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(40px,6vw,72px); line-height: 0.9; background: linear-gradient(135deg, var(--white), var(--teal)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 20px; }
-.align-body { font-size: 15px; line-height: 1.8; color: var(--muted); margin-bottom: 32px; }
-.align-body strong { color: var(--white); font-weight: 500; }
-.align-features { display: flex; flex-direction: column; gap: 14px; margin-bottom: 36px; }
-.align-feat { display: flex; align-items: flex-start; gap: 12px; }
-.align-feat-icon { width: 26px; height: 26px; border-radius: 50%; background: rgba(0,212,200,0.1); border: 1px solid rgba(0,212,200,0.25); display: flex; align-items: center; justify-content: center; font-size: 12px; flex-shrink: 0; margin-top: 2px; }
-.align-feat-text { font-size: 13px; color: var(--muted); line-height: 1.6; }
-.align-feat-text strong { color: var(--white); font-weight: 500; }
-.coming-soon-box { background: linear-gradient(135deg, rgba(0,212,200,0.08), rgba(255,107,26,0.04)); border: 1px solid rgba(0,212,200,0.2); padding: 22px 26px; position: relative; overflow: hidden; }
-.coming-soon-box::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--teal), var(--orange)); }
-.cs-label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.4em; color: var(--teal); text-transform: uppercase; margin-bottom: 6px; animation: blink 2s ease-in-out infinite; }
-.cs-title { font-family: 'Bebas Neue', sans-serif; font-size: 26px; letter-spacing: 0.1em; color: var(--white); margin-bottom: 6px; }
-.cs-desc { font-size: 12px; color: var(--muted); line-height: 1.6; }
+.align-feat-list { display: flex; flex-direction: column; gap: 0; border: 1px solid rgba(255,255,255,0.08); margin-bottom: 40px; }
+.align-feat-item {
+  display: flex; gap: 20px; padding: 20px 24px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  transition: background 0.2s;
+}
+.align-feat-item:last-child { border-bottom: none; }
+.align-feat-item:hover { background: rgba(255,255,255,0.04); }
+.align-feat-num {
+  font-family: 'Space Mono', monospace;
+  font-size: 10px; color: var(--teal);
+  font-weight: 700; flex-shrink: 0; margin-top: 2px;
+}
+.align-feat-name {
+  font-weight: 600; font-size: 14px; color: #fff;
+  margin-bottom: 4px; letter-spacing: -0.01em;
+}
+.align-feat-desc { font-size: 12px; color: rgba(255,255,255,0.4); line-height: 1.6; }
 
-/* PATENT BANNER */
-.patent-banner { position: relative; z-index: 1; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); background: linear-gradient(135deg, rgba(255,107,26,0.05), rgba(0,212,200,0.03)); }
-.patent-inner { max-width: 1100px; margin: 0 auto; padding: 60px 40px; display: flex; align-items: center; justify-content: space-between; gap: 40px; flex-wrap: wrap; }
-.patent-text h3 { font-family: 'Bebas Neue', sans-serif; font-size: 32px; letter-spacing: 0.1em; background: linear-gradient(90deg, var(--white), var(--orange)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 8px; }
-.patent-text p { font-size: 14px; color: var(--muted); line-height: 1.7; max-width: 480px; }
-.patent-badge { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.3em; color: var(--orange); border: 1px solid rgba(255,107,26,0.3); padding: 12px 24px; text-transform: uppercase; white-space: nowrap; animation: blink 3s ease-in-out infinite; }
+.coming-soon {
+  border: 1px solid rgba(0,168,150,0.3);
+  padding: 24px; position: relative;
+  background: rgba(0,168,150,0.05);
+}
+.coming-soon::before {
+  content: ''; position: absolute;
+  top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, var(--teal), transparent);
+}
+.cs-eyebrow {
+  font-family: 'Space Mono', monospace;
+  font-size: 9px; letter-spacing: 0.3em;
+  color: var(--teal); text-transform: uppercase;
+  margin-bottom: 8px; display: flex;
+  align-items: center; gap: 8px;
+}
+.cs-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--teal);
+  animation: cs-blink 1.5s ease-in-out infinite;
+}
+@keyframes cs-blink { 0%,100%{opacity:0.3} 50%{opacity:1} }
+.cs-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700; font-size: 22px;
+  letter-spacing: -0.02em; margin-bottom: 6px;
+}
+.cs-sub { font-size: 12px; color: rgba(255,255,255,0.4); line-height: 1.6; }
+
+/* PHONE MOCKUP */
+.align-right { display: flex; align-items: center; justify-content: center; }
+.phone-wrap {
+  position: relative;
+  animation: phone-bob 5s ease-in-out infinite alternate;
+}
+@keyframes phone-bob { 0%{transform:translateY(0) rotate(3deg)} 100%{transform:translateY(-24px) rotate(-3deg)} }
+.phone-body {
+  width: 220px; height: 420px;
+  background: #111;
+  border: 2px solid rgba(255,255,255,0.1);
+  border-radius: 36px;
+  position: relative; overflow: hidden;
+  box-shadow: 0 60px 120px rgba(0,0,0,0.8), 0 0 0 1px rgba(255,255,255,0.05), 0 0 60px rgba(0,168,150,0.15);
+}
+.phone-notch {
+  position: absolute; top: 14px; left: 50%;
+  transform: translateX(-50%);
+  width: 60px; height: 5px;
+  background: rgba(255,255,255,0.15);
+  border-radius: 3px; z-index: 5;
+}
+.phone-screen {
+  position: absolute; inset: 28px 8px 8px;
+  background: #050e0e;
+  border-radius: 28px; overflow: hidden;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+}
+.phone-grid {
+  position: absolute; inset: 0;
+  background-image: linear-gradient(rgba(0,168,150,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(0,168,150,0.07) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+.phone-scan {
+  position: absolute; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--teal), transparent);
+  box-shadow: 0 0 10px var(--teal);
+  animation: scan 2.5s ease-in-out infinite;
+}
+@keyframes scan { 0%{top:15%;opacity:0} 10%{opacity:1} 90%{opacity:1} 100%{top:85%;opacity:0} }
+.phone-foot { font-size: 80px; position: relative; z-index: 2; filter: drop-shadow(0 0 20px rgba(0,168,150,0.6)); animation: foot-pulse 2.5s ease-in-out infinite; }
+@keyframes foot-pulse { 0%,100%{filter:drop-shadow(0 0 10px rgba(0,168,150,0.4))} 50%{filter:drop-shadow(0 0 30px rgba(0,168,150,1)) drop-shadow(0 0 60px rgba(0,168,150,0.4))} }
+.phone-hud {
+  position: absolute; bottom: 16px; left: 12px; right: 12px;
+  font-family: 'Space Mono', monospace; font-size: 7px;
+  color: var(--teal); letter-spacing: 0.15em;
+  text-align: center; animation: hud-blink 1.2s ease-in-out infinite;
+}
+@keyframes hud-blink { 0%,100%{opacity:0.4} 50%{opacity:1} }
+.scan-corner { position: absolute; width: 16px; height: 16px; border-color: var(--teal); border-style: solid; opacity: 0.8; }
+.scan-corner.tl { top: 12px; left: 12px; border-width: 2px 0 0 2px; }
+.scan-corner.tr { top: 12px; right: 12px; border-width: 2px 2px 0 0; }
+.scan-corner.bl { bottom: 28px; left: 12px; border-width: 0 0 2px 2px; }
+.scan-corner.br { bottom: 28px; right: 12px; border-width: 0 2px 2px 0; }
+
+/* PATENT */
+.patent {
+  border-top: 1px solid var(--border);
+  background: var(--accent);
+  padding: 48px;
+  display: flex; align-items: center;
+  justify-content: space-between; gap: 24px;
+  flex-wrap: wrap;
+}
+.patent-text h3 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700; font-size: clamp(20px, 3vw, 32px);
+  letter-spacing: -0.03em; color: #fff; margin-bottom: 8px;
+}
+.patent-text p { font-size: 13px; color: rgba(255,255,255,0.7); max-width: 500px; line-height: 1.7; }
+.patent-stamp {
+  font-family: 'Space Mono', monospace;
+  font-size: 11px; letter-spacing: 0.2em;
+  color: #fff; border: 2px solid rgba(255,255,255,0.4);
+  padding: 14px 24px; text-transform: uppercase;
+  white-space: nowrap;
+}
 
 /* FOOTER */
-footer { position: relative; z-index: 1; text-align: center; padding: 48px 40px; border-top: 1px solid var(--border); }
-.footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 28px; letter-spacing: 0.15em; background: linear-gradient(135deg, var(--white), var(--orange)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 12px; }
-.footer-links { display: flex; gap: 28px; justify-content: center; margin-bottom: 16px; flex-wrap: wrap; }
-.footer-link { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.2em; color: var(--muted); text-transform: uppercase; text-decoration: none; transition: color 0.2s; }
-.footer-link:hover { color: var(--white); }
-.footer-copy { font-size: 11px; color: var(--muted); opacity: 0.5; }
+footer {
+  border-top: 1px solid var(--border);
+  padding: 48px;
+  display: grid; grid-template-columns: 1fr 1fr 1fr;
+  gap: 32px; align-items: center;
+}
+@media (max-width: 768px) { footer { grid-template-columns: 1fr; text-align: center; padding: 40px 24px; } nav { padding: 0 20px; } .nav-links { display: none; } }
+
+.footer-logo {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700; font-size: 18px;
+  letter-spacing: -0.02em; color: var(--black);
+}
+.footer-logo span { color: var(--accent); }
+.footer-copy {
+  font-family: 'Space Mono', monospace;
+  font-size: 9px; letter-spacing: 0.2em;
+  color: var(--gray); text-transform: uppercase;
+  text-align: center;
+}
+.footer-links {
+  display: flex; gap: 24px; justify-content: flex-end; flex-wrap: wrap;
+}
+.footer-link {
+  font-family: 'Space Mono', monospace;
+  font-size: 9px; letter-spacing: 0.2em;
+  color: var(--gray); text-transform: uppercase;
+  text-decoration: none; transition: color 0.2s;
+}
+.footer-link:hover { color: var(--black); }
 </style>
 </head>
 <body>
 
 <!-- SPLASH -->
 <div id="splash" onclick="enterSite()">
-  <div class="splash-scan-ring"></div>
-  <div class="splash-scan-ring2"></div>
-  <div class="splash-boot-wrap">
-    <svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <!-- Boot silhouette -->
-      <path d="M30 160 L30 90 Q30 60 55 50 L90 45 Q110 43 120 50 L155 80 Q170 95 168 115 L165 130 Q163 145 150 152 L140 155 L140 160 Z" fill="#2f4f4f" stroke="#00d4c8" stroke-width="1.5"/>
-      <!-- Sole -->
-      <path d="M25 158 Q25 170 40 172 L150 172 Q165 170 165 158 L165 155 L140 155 L140 158 L50 158 L50 155 L30 155 Z" fill="#1a1a2e" stroke="#ff6b1a" stroke-width="1.5"/>
-      <!-- Laces area -->
-      <path d="M55 50 L55 110 L95 108 L95 48 Z" fill="#1e3040" stroke="#00d4c8" stroke-width="1" opacity="0.8"/>
-      <!-- Laces -->
-      <line x1="58" y1="60" x2="92" y2="58" stroke="#ff6b1a" stroke-width="2" stroke-linecap="round"/>
-      <line x1="58" y1="72" x2="92" y2="70" stroke="#ff6b1a" stroke-width="2" stroke-linecap="round"/>
-      <line x1="58" y1="84" x2="92" y2="82" stroke="#ff6b1a" stroke-width="2" stroke-linecap="round"/>
-      <line x1="58" y1="96" x2="92" y2="94" stroke="#ff6b1a" stroke-width="2" stroke-linecap="round"/>
-      <!-- Logo patch -->
-      <rect x="110" y="95" width="40" height="28" rx="3" fill="#1a2a1a" stroke="#ff6b1a" stroke-width="1"/>
-      <text x="130" y="107" font-family="serif" font-size="5" fill="#ff6b1a" text-anchor="middle" letter-spacing="1">SQUACH</text>
-      <text x="130" y="116" font-family="serif" font-size="4" fill="#00d4c8" text-anchor="middle" letter-spacing="1">ACERS</text>
-      <!-- Tread marks -->
-      <rect x="35" y="165" width="12" height="4" rx="1" fill="#ff6b1a" opacity="0.6"/>
-      <rect x="55" y="165" width="12" height="4" rx="1" fill="#ff6b1a" opacity="0.6"/>
-      <rect x="75" y="165" width="12" height="4" rx="1" fill="#ff6b1a" opacity="0.6"/>
-      <rect x="95" y="165" width="12" height="4" rx="1" fill="#ff6b1a" opacity="0.6"/>
-      <rect x="115" y="165" width="12" height="4" rx="1" fill="#ff6b1a" opacity="0.6"/>
-      <rect x="135" y="165" width="12" height="4" rx="1" fill="#ff6b1a" opacity="0.6"/>
-      <!-- Glow under sole -->
-      <ellipse cx="97" cy="173" rx="60" ry="6" fill="#ff6b1a" opacity="0.15"/>
-    </svg>
+  <div class="splash-line h" style="top:20%"></div>
+  <div class="splash-line h" style="top:80%"></div>
+  <div class="splash-line v" style="left:20%"></div>
+  <div class="splash-line v" style="left:80%"></div>
+  <div class="splash-counter">26</div>
+  <div class="splash-dot" style="width:8px;height:8px;top:20%;left:20%;margin:-4px"></div>
+  <div class="splash-dot" style="width:8px;height:8px;top:20%;left:80%;margin:-4px;animation-delay:2.1s"></div>
+  <div class="splash-dot" style="width:8px;height:8px;top:80%;left:20%;margin:-4px;animation-delay:2.2s"></div>
+  <div class="splash-dot" style="width:8px;height:8px;top:80%;left:80%;margin:-4px;animation-delay:2.3s"></div>
+  <div class="splash-logo-wrap">
+    <div class="splash-wordmark">Squach<span>Acers</span></div>
+    <div class="splash-divider"></div>
+    <div class="splash-tagline">Footwear Division · EST. 2026 · Patent Pending</div>
   </div>
-  <div class="splash-ground"></div>
-  <div class="splash-brand">SquachAcers</div>
-  <div class="splash-sub">Footwear · EST. 2026 · Patent Pending</div>
-  <div class="splash-tap">👟 Tap to Enter 👟</div>
+  <div class="splash-enter">Enter</div>
 </div>
 
 <!-- NAV -->
 <nav>
-  <a href="#" class="nav-logo">SquachAcers™</a>
-  <span class="nav-tag">Footwear Division</span>
-  <a href="https://squachacers.com" class="nav-store">← Patch Store</a>
+  <a href="#" class="nav-logo">Squach<span>Acers</span>™</a>
+  <div class="nav-links">
+    <a href="#colorways" class="nav-link">Colorways</a>
+    <a href="#specs" class="nav-link">Specs</a>
+    <a href="#align" class="nav-link">Squach Align</a>
+  </div>
+  <a href="https://squachacers.com" class="nav-cta">Patch Store →</a>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-eyebrow">EST. 2026 — Quincy, Florida</div>
-  <div class="hero-title">APEX<br>PREDATOR</div>
-  <div class="hero-title-sub">The Boot That Finds You First</div>
-  <p class="hero-desc"><strong>Five colorways. One outsole.</strong> The Apex Predator boot was built for the terrain between civilization and the unknown. Waterproof egress zipper. Squach-Grip tread. Tractor beam laces.</p>
-  <div class="hero-badges">
-    <span class="hero-badge badge-orange">Squach-Grip Outsole</span>
-    <span class="hero-badge badge-teal">Waterproof Egress Zipper</span>
-    <span class="hero-badge badge-gold">Patent Pending Tech</span>
-    <span class="hero-badge badge-orange">EST. 2026</span>
+  <div class="hero-left">
+    <div class="hero-number">Apex Predator Boot — 2026</div>
+    <h1 class="hero-h1">The Boot<br>That Finds<br>You <em>First.</em></h1>
+    <p class="hero-body"><strong>Five colorways. One outsole.</strong> The Apex Predator was engineered for the terrain between civilization and the unknown. Squach-Grip tread. Tractor Beam laces. Waterproof egress zipper.</p>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <span class="stat-num">5</span>
+        <span class="stat-label">Colorways</span>
+      </div>
+      <div class="hero-stat">
+        <span class="stat-num">1</span>
+        <span class="stat-label">Outsole</span>
+      </div>
+      <div class="hero-stat">
+        <span class="stat-num">26</span>
+        <span class="stat-label">EST.</span>
+      </div>
+    </div>
+    <div class="hero-actions">
+      <a href="#colorways" class="btn-primary">Explore Colorways</a>
+      <a href="#align" class="btn-ghost">Squach Align →</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-right-bg"></div>
+    <div class="hero-boot-display">
+      <svg width="320" height="320" viewBox="0 0 200 200" fill="none">
+        <path d="M30 160 L30 90 Q30 60 55 50 L90 45 Q110 43 120 50 L155 80 Q170 95 168 115 L165 130 Q163 145 150 152 L140 155 L140 160 Z" fill="#2f4f4f"/>
+        <path d="M25 158 Q25 170 40 172 L150 172 Q165 170 165 158 L165 155 L140 155 L140 158 L50 158 L50 155 L30 155 Z" fill="#1a1a1a"/>
+        <path d="M55 50 L55 110 L95 108 L95 48 Z" fill="#1e3040" opacity="0.8"/>
+        <line x1="58" y1="60" x2="92" y2="58" stroke="#ff4500" stroke-width="2.5" stroke-linecap="round"/>
+        <line x1="58" y1="72" x2="92" y2="70" stroke="#ff4500" stroke-width="2.5" stroke-linecap="round"/>
+        <line x1="58" y1="84" x2="92" y2="82" stroke="#ff4500" stroke-width="2.5" stroke-linecap="round"/>
+        <line x1="58" y1="96" x2="92" y2="94" stroke="#ff4500" stroke-width="2.5" stroke-linecap="round"/>
+        <rect x="108" y="93" width="44" height="30" rx="3" fill="#0a0a08"/>
+        <text x="130" y="106" font-family="monospace" font-size="5" fill="#ff4500" text-anchor="middle" letter-spacing="1">SQUACH</text>
+        <text x="130" y="116" font-family="monospace" font-size="4" fill="#00a896" text-anchor="middle" letter-spacing="1">ACERS™</text>
+        <rect x="33" y="164" width="10" height="5" rx="1" fill="#ff4500" opacity="0.7"/>
+        <rect x="51" y="164" width="10" height="5" rx="1" fill="#ff4500" opacity="0.7"/>
+        <rect x="69" y="164" width="10" height="5" rx="1" fill="#ff4500" opacity="0.7"/>
+        <rect x="87" y="164" width="10" height="5" rx="1" fill="#ff4500" opacity="0.7"/>
+        <rect x="105" y="164" width="10" height="5" rx="1" fill="#ff4500" opacity="0.7"/>
+        <rect x="123" y="164" width="10" height="5" rx="1" fill="#ff4500" opacity="0.7"/>
+        <rect x="141" y="164" width="10" height="5" rx="1" fill="#ff4500" opacity="0.7"/>
+        <ellipse cx="97" cy="174" rx="65" ry="5" fill="#ff4500" opacity="0.08"/>
+      </svg>
+    </div>
+    <div class="hero-boot-label">
+      Forest Green
+      <span>Apex Predator</span>
+    </div>
+    <div class="hero-cross"></div>
   </div>
 </section>
 
 <!-- COLORWAYS -->
-<div class="colorways">
-  <div style="max-width:1100px;margin:0 auto;padding:0 40px 0;">
-    <div class="section-label">All 5 Colorways</div>
-    <div class="section-line"></div>
-    <div class="section-title">Pick Your<br>Terrain</div>
-    <p class="section-body">Each colorway is built for a different environment. From the Florida wilderness to the cosmic unknown — the Apex Predator goes everywhere.</p>
+<section class="colorways" id="colorways">
+  <div class="section-header">
+    <div>
+      <div class="section-num">02 — Colorways</div>
+      <h2 class="section-h2">Pick Your<br>Terrain.</h2>
+    </div>
+    <p class="section-desc">Each colorway is engineered for a different environment. Five options. One decision.</p>
   </div>
-  <div class="colorways-row">
-
-    <div class="colorway-card" style="--fd:5s;--fdelay:0.2s;--cv-color:#22c55e;--cv-glow:rgba(34,197,94,0.15);--cv-bg:rgba(34,197,94,0.08)">
-      <div class="boot-visual">
-        <div class="boot-emoji">👟</div>
-      </div>
-      <div class="boot-name">Forest Green</div>
-      <div class="boot-sub">PMS 5535 C</div>
-      <span class="boot-badge" style="color:#22c55e;border-color:rgba(34,197,94,0.3)">Hero</span>
+  <div class="colorways-grid">
+    <div class="cw-card">
+      <div class="cw-swatch" style="background:#2f4f4f"></div>
+      <div class="cw-name">Forest Green</div>
+      <div class="cw-code">PMS 5535 C</div>
+      <span class="cw-tag hero">Hero</span>
     </div>
-
-    <div class="colorway-card" style="--fd:4s;--fdelay:0.4s;--cv-color:#1a1a2e;--cv-glow:rgba(100,100,200,0.1);--cv-bg:rgba(100,100,200,0.05)">
-      <div class="boot-visual">
-        <div class="boot-emoji">👟</div>
-      </div>
-      <div class="boot-name">Midnight Abduction</div>
-      <div class="boot-sub">All Black</div>
-      <span class="boot-badge" style="color:var(--teal);border-color:rgba(0,212,200,0.3)">Limited</span>
+    <div class="cw-card">
+      <div class="cw-swatch" style="background:#0a0a0a"></div>
+      <div class="cw-name">Midnight Abduction</div>
+      <div class="cw-code">All Black</div>
+      <span class="cw-tag">Limited</span>
     </div>
-
-    <div class="colorway-card hero-boot" style="--fd:3.5s;--fdelay:0s;--cv-color:var(--orange);--cv-glow:rgba(255,107,26,0.2);--cv-bg:rgba(255,107,26,0.1)">
-      <div class="boot-visual">
-        <div class="boot-emoji">👟</div>
-      </div>
-      <div class="boot-name">Apex Orange</div>
-      <div class="boot-sub">PMS 804 C</div>
-      <span class="boot-badge" style="color:var(--orange);border-color:rgba(255,107,26,0.4)">Flagship</span>
+    <div class="cw-card">
+      <div class="cw-swatch" style="background:#ff4500"></div>
+      <div class="cw-name">Apex Orange</div>
+      <div class="cw-code">PMS 804 C</div>
+      <span class="cw-tag">Flagship</span>
     </div>
-
-    <div class="colorway-card" style="--fd:4.5s;--fdelay:0.6s;--cv-color:#c4956a;--cv-glow:rgba(196,149,106,0.15);--cv-bg:rgba(196,149,106,0.08)">
-      <div class="boot-visual">
-        <div class="boot-emoji">👟</div>
-      </div>
-      <div class="boot-name">Desert Squatch</div>
-      <div class="boot-sub">Sand / Tan</div>
-      <span class="boot-badge" style="color:var(--gold);border-color:rgba(240,168,48,0.3)">New</span>
+    <div class="cw-card">
+      <div class="cw-swatch" style="background:#c4956a"></div>
+      <div class="cw-name">Desert Squatch</div>
+      <div class="cw-code">Sand / Tan</div>
+      <span class="cw-tag">New</span>
     </div>
-
-    <div class="colorway-card" style="--fd:5s;--fdelay:0.8s;--cv-color:#f0f4ff;--cv-glow:rgba(240,244,255,0.1);--cv-bg:rgba(240,244,255,0.05)">
-      <div class="boot-visual">
-        <div class="boot-emoji">👟</div>
-      </div>
-      <div class="boot-name">Snow Blind</div>
-      <div class="boot-sub">White / Ice</div>
-      <span class="boot-badge" style="color:#f0f4ff;border-color:rgba(240,244,255,0.2)">New</span>
+    <div class="cw-card">
+      <div class="cw-swatch" style="background:#e8e4dc;border:1px solid #ddd"></div>
+      <div class="cw-name">Snow Blind</div>
+      <div class="cw-code">White / Ice</div>
+      <span class="cw-tag">New</span>
     </div>
-
   </div>
-</div>
+</section>
 
 <!-- SPECS -->
-<section class="specs-section">
-  <div class="section-inner">
-    <div class="section-label">Boot Specs</div>
-    <div class="section-line"></div>
-    <div class="section-title">Built For<br>The Unknown</div>
-    <p class="section-body">Every component of the Apex Predator was spec'd for maximum performance in unpredictable terrain.</p>
-    <div class="specs-grid">
-      <div class="spec-card" style="--sc:var(--orange)">
-        <div class="spec-icon">👣</div>
-        <div class="spec-name">Squach-Grip Outsole</div>
-        <div class="spec-detail">Bigfoot footprint tread pattern engineered for grip on wet rock, mud, and forest terrain.</div>
-        <div class="spec-value">Neon Orange · PMS 804 C</div>
+<section class="specs" id="specs">
+  <div class="specs-left">
+    <div class="section-num">03 — Specifications</div>
+    <h2 class="section-h2">Built For<br>The Unknown.</h2>
+    <p style="font-size:14px;color:var(--gray);line-height:1.7;margin-top:16px;max-width:360px;">Every component was specified for maximum performance in unpredictable terrain. Nothing is decorative. Everything works.</p>
+    <div class="spec-list">
+      <div class="spec-row">
+        <div class="spec-row-num">01</div>
+        <div class="spec-row-content">
+          <div class="spec-row-name">Squach-Grip Outsole</div>
+          <div class="spec-row-detail">Bigfoot footprint tread pattern. Wet rock, mud, forest terrain.</div>
+          <div class="spec-row-val">Neon Orange · PMS 804 C</div>
+        </div>
       </div>
-      <div class="spec-card" style="--sc:var(--teal)">
-        <div class="spec-icon">🔒</div>
-        <div class="spec-name">Egress Zipper</div>
-        <div class="spec-detail">Italy-sourced waterproof side zipper with custom UFO-shaped zipper pull. Fast entry, zero water.</div>
-        <div class="spec-value">Italy Sourced · Waterproof</div>
+      <div class="spec-row">
+        <div class="spec-row-num">02</div>
+        <div class="spec-row-content">
+          <div class="spec-row-name">Egress Zipper</div>
+          <div class="spec-row-detail">Italy-sourced waterproof side zipper. UFO-shaped zipper pull.</div>
+          <div class="spec-row-val">Italy Sourced · Waterproof</div>
+        </div>
       </div>
-      <div class="spec-card" style="--sc:var(--orange)">
-        <div class="spec-icon">🪢</div>
-        <div class="spec-name">Tractor Beam Laces</div>
-        <div class="spec-detail">Toxic orange paracord laces — "Tractor Beam" colorway. Functional and unmistakable on the trail.</div>
-        <div class="spec-value">Paracord · PMS 804 C</div>
+      <div class="spec-row">
+        <div class="spec-row-num">03</div>
+        <div class="spec-row-content">
+          <div class="spec-row-name">Tractor Beam Laces</div>
+          <div class="spec-row-detail">Toxic orange paracord laces. Functional. Unmistakable.</div>
+          <div class="spec-row-val">Paracord · PMS 804 C</div>
+        </div>
       </div>
-      <div class="spec-card" style="--sc:var(--teal)">
-        <div class="spec-icon">🏗️</div>
-        <div class="spec-name">Upper Construction</div>
-        <div class="spec-detail">Forest green canvas with matte black reinforced polymer toe cap and heel counter.</div>
-        <div class="spec-value">Canvas · Polymer Reinforced</div>
+      <div class="spec-row">
+        <div class="spec-row-num">04</div>
+        <div class="spec-row-content">
+          <div class="spec-row-name">Upper Construction</div>
+          <div class="spec-row-detail">Forest green canvas. Matte black reinforced polymer toe cap.</div>
+          <div class="spec-row-val">Canvas · Polymer Reinforced</div>
+        </div>
       </div>
-      <div class="spec-card" style="--sc:var(--gold)">
-        <div class="spec-icon">🌊</div>
-        <div class="spec-name">Waterproofing</div>
-        <div class="spec-detail">Full waterproof membrane throughout. Built for Florida swamps, mountain streams, and everything between.</div>
-        <div class="spec-value">Full Membrane · All Terrain</div>
+      <div class="spec-row">
+        <div class="spec-row-num">05</div>
+        <div class="spec-row-content">
+          <div class="spec-row-name">Brand Patch</div>
+          <div class="spec-row-detail">Embroidered SquachAcers logo. Matches EST. 2026 founding collection.</div>
+          <div class="spec-row-val">Embroidered · EST. 2026</div>
+        </div>
       </div>
-      <div class="spec-card" style="--sc:var(--orange)">
-        <div class="spec-icon">🎨</div>
-        <div class="spec-name">Brand Patch</div>
-        <div class="spec-detail">Embroidered SquachAcers logo patch on outer heel. Matches the EST. 2026 founding patch collection.</div>
-        <div class="spec-value">Embroidered · EST. 2026</div>
+    </div>
+  </div>
+  <div class="specs-right">
+    <div style="background:var(--light);width:100%;height:100%;min-height:400px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;">
+      <div style="position:absolute;inset:0;background:linear-gradient(135deg,var(--light),var(--border))"></div>
+      <div style="position:relative;z-index:2;text-align:center;">
+        <div style="font-size:120px;filter:drop-shadow(0 20px 40px rgba(0,0,0,0.15));animation:boot-breathe 4s ease-in-out infinite">👟</div>
+        <div style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.3em;color:var(--gray);text-transform:uppercase;margin-top:16px">Apex Predator · Forest Green</div>
       </div>
+      <div style="position:absolute;bottom:24px;right:24px;font-family:'Space Mono',monospace;font-size:9px;color:var(--gray);letter-spacing:0.2em">EST. 2026</div>
     </div>
   </div>
 </section>
 
 <!-- SQUACH ALIGN -->
-<section class="align-section">
-  <div class="align-inner">
-    <div class="align-visual">
-      <div class="align-ring"></div>
-      <div class="align-ring2"></div>
-      <div class="align-phone">
-        <div class="align-screen">
-          <div class="scan-grid"></div>
-          <div class="scan-beam"></div>
+<section class="align" id="align">
+  <div class="align-left">
+    <div class="section-num">04 — Technology</div>
+    <h2 class="align-title">Squach<br><span>Align™</span></h2>
+    <p class="align-body"><strong>Foot realignment starts with understanding your feet.</strong> Squach Align uses your phone camera to scan your foot's natural alignment and recommend the correct modular spacer configuration for our patent pending sandal platform.</p>
+    <div class="align-feat-list">
+      <div class="align-feat-item">
+        <div class="align-feat-num">01</div>
+        <div>
+          <div class="align-feat-name">Phone Camera Scan</div>
+          <div class="align-feat-desc">Place your foot, scan in seconds. No equipment needed.</div>
+        </div>
+      </div>
+      <div class="align-feat-item">
+        <div class="align-feat-num">02</div>
+        <div>
+          <div class="align-feat-name">Alignment Analysis</div>
+          <div class="align-feat-desc">Identifies pronation, supination, and arch profile instantly.</div>
+        </div>
+      </div>
+      <div class="align-feat-item">
+        <div class="align-feat-num">03</div>
+        <div>
+          <div class="align-feat-name">Modular Spacer Config</div>
+          <div class="align-feat-desc">Recommends exact brass insert configuration for your feet.</div>
+        </div>
+      </div>
+      <div class="align-feat-item">
+        <div class="align-feat-num">04</div>
+        <div>
+          <div class="align-feat-name">Patent Pending</div>
+          <div class="align-feat-desc">Proprietary modular screw-in spacer system. First of its kind.</div>
+        </div>
+      </div>
+    </div>
+    <div class="coming-soon">
+      <div class="cs-eyebrow"><div class="cs-dot"></div>Coming Soon</div>
+      <div class="cs-title">Squach Align App</div>
+      <div class="cs-sub">Launching alongside the modular sandal platform. Patent pending. EST. 2026. Built in Quincy, Florida.</div>
+    </div>
+  </div>
+  <div class="align-right">
+    <div class="phone-wrap">
+      <div class="phone-body">
+        <div class="phone-notch"></div>
+        <div class="phone-screen">
+          <div class="phone-grid"></div>
+          <div class="phone-scan"></div>
           <div class="scan-corner tl"></div>
           <div class="scan-corner tr"></div>
           <div class="scan-corner bl"></div>
           <div class="scan-corner br"></div>
-          <div class="scan-foot-icon">🦶</div>
-          <div class="scan-readout">SQUACH ALIGN · SCANNING...</div>
+          <div class="phone-foot">🦶</div>
+          <div class="phone-hud">SQUACH ALIGN · SCANNING...</div>
         </div>
-      </div>
-    </div>
-    <div class="align-content">
-      <div class="align-label">Patent Pending Technology</div>
-      <div class="section-line" style="background:linear-gradient(90deg,var(--teal),var(--orange))"></div>
-      <div class="align-title">Squach<br>Align™</div>
-      <p class="align-body"><strong>Foot realignment starts with understanding your feet.</strong> The Squach Align system uses your phone camera to scan your foot's natural alignment and recommend the correct modular spacer configuration for our patent pending sandal platform.</p>
-      <div class="align-features">
-        <div class="align-feat">
-          <div class="align-feat-icon">📱</div>
-          <div class="align-feat-text"><strong>Phone Camera Scan</strong> — Place your foot, scan in seconds. No equipment needed.</div>
-        </div>
-        <div class="align-feat">
-          <div class="align-feat-icon">🦶</div>
-          <div class="align-feat-text"><strong>Alignment Analysis</strong> — Identifies pronation, supination, and arch profile.</div>
-        </div>
-        <div class="align-feat">
-          <div class="align-feat-icon">🔩</div>
-          <div class="align-feat-text"><strong>Modular Spacer Config</strong> — Recommends exact brass insert configuration for your feet.</div>
-        </div>
-        <div class="align-feat">
-          <div class="align-feat-icon">🛸</div>
-          <div class="align-feat-text"><strong>Patent Pending</strong> — Proprietary modular screw-in spacer system. First of its kind.</div>
-        </div>
-      </div>
-      <div class="coming-soon-box">
-        <div class="cs-label">● Coming Soon</div>
-        <div class="cs-title">Squach Align App</div>
-        <div class="cs-desc">Launching alongside the modular sandal platform. Patent pending. EST. 2026. Built in Quincy, Florida.</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- PATENT BANNER -->
-<div class="patent-banner">
-  <div class="patent-inner">
-    <div class="patent-text">
-      <h3>Patent Pending — Modular Sandal System</h3>
-      <p>The SquachAcers modular sandal platform uses removable screw-in spacers with brass threaded inserts to create a customizable realignment sandal. No other footwear brand has this. Filed and protected.</p>
-    </div>
-    <div class="patent-badge">Patent Pending · EST. 2026</div>
+<!-- PATENT -->
+<div class="patent">
+  <div class="patent-text">
+    <h3>Patent Pending — Modular Sandal System</h3>
+    <p>The SquachAcers modular sandal platform uses removable screw-in spacers with brass threaded inserts. No other footwear brand has this. Filed and protected. EST. 2026.</p>
   </div>
+  <div class="patent-stamp">Patent Pending · EST. 2026</div>
 </div>
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-logo">SquachAcers™</div>
+  <div class="footer-logo">Squach<span>Acers</span>™</div>
+  <div class="footer-copy">EST. 2026 — Quincy, Florida — squachacers.app</div>
   <div class="footer-links">
-    <a href="https://squachacers.com" class="footer-link">Patch Store</a>
+    <a href="https://squachacers.com" class="footer-link">Patches</a>
     <a href="https://squachacers.com/pickleball.html" class="footer-link">Pickleball</a>
     <a href="#" class="footer-link">Footwear</a>
   </div>
-  <p class="footer-copy">EST. 2026 — Quincy, Florida — squachacers.app — Trademark Filed — Patent Pending</p>
 </footer>
 
 <script>
 function enterSite() {
   document.getElementById('splash').classList.add('hide');
-  setTimeout(() => { document.getElementById('splash').style.display = 'none'; }, 900);
+  setTimeout(() => { document.getElementById('splash').style.display = 'none'; }, 1000);
 }
 </script>
 </body>
