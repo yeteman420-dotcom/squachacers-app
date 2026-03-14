@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,144 +27,218 @@
     color: var(--off-white);
     font-family: var(--mono);
     overflow-x: hidden;
-    cursor: default;
+    cursor: none;
   }
+
+  .cursor {
+    position: fixed;
+    width: 8px; height: 8px;
+    background: var(--orange);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: width 0.3s, height 0.3s;
+  }
+  .cursor-ring {
+    position: fixed;
+    width: 36px; height: 36px;
+    border: 1px solid rgba(255,92,26,0.4);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9998;
+    transform: translate(-50%, -50%);
+    transition: width 0.3s, height 0.3s, opacity 0.3s;
+  }
+  .cursor.hovering { width: 16px; height: 16px; }
+  .cursor-ring.hovering { width: 56px; height: 56px; opacity: 0.3; }
 
   body::before {
     content: '';
     position: fixed;
     inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
     pointer-events: none;
     z-index: 1000;
-    opacity: 0.4;
+  }
+
+  .orb { position: fixed; border-radius: 50%; pointer-events: none; filter: blur(80px); }
+  .orb-1 { width: 500px; height: 500px; background: radial-gradient(circle, rgba(255,92,26,0.12), transparent 70%); top: -100px; right: -100px; animation: orbFloat 20s infinite ease-in-out; }
+  .orb-2 { width: 400px; height: 400px; background: radial-gradient(circle, rgba(255,92,26,0.06), transparent 70%); bottom: 20%; left: -100px; animation: orbFloat 20s -7s infinite ease-in-out; }
+  @keyframes orbFloat {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(30px, -40px) scale(1.05); }
+    66% { transform: translate(-20px, 20px) scale(0.95); }
   }
 
   nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 100;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 24px 40px;
+    position: fixed; top: 0; left: 0; right: 0; z-index: 500;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 24px 48px;
     border-bottom: 1px solid var(--border);
-    background: rgba(10,10,8,0.85);
-    backdrop-filter: blur(12px);
+    background: rgba(10,10,8,0.8);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
   }
-
-  .nav-logo { font-family: var(--display); font-size: 22px; letter-spacing: 0.1em; color: var(--off-white); }
+  .nav-logo { font-family: var(--display); font-size: 22px; letter-spacing: 0.1em; color: var(--off-white); text-decoration: none; }
   .nav-logo span { color: var(--orange); }
   .nav-right { display: flex; gap: 32px; align-items: center; }
-  .nav-link { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(240,237,230,0.5); text-decoration: none; transition: color 0.2s; }
+  .nav-link { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(240,237,230,0.45); text-decoration: none; transition: color 0.2s; }
   .nav-link:hover { color: var(--off-white); }
-  .nav-cta { font-family: var(--mono); font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; background: var(--orange); color: var(--black); padding: 10px 20px; text-decoration: none; transition: background 0.2s; }
-  .nav-cta:hover { background: var(--orange-dim); }
+  .nav-cta { font-family: var(--mono); font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; background: var(--orange); color: var(--black); padding: 11px 22px; text-decoration: none; transition: background 0.2s, transform 0.2s; display: inline-block; }
+  .nav-cta:hover { background: var(--orange-dim); transform: translateY(-1px); }
 
-  .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: 140px 40px 80px; position: relative; overflow: hidden; }
-  .hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 60% 60% at 80% 50%, rgba(255,92,26,0.07) 0%, transparent 70%); pointer-events: none; }
-  .hero-label { font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--orange); margin-bottom: 24px; opacity: 0; animation: fadeUp 0.8s 0.2s forwards; }
-  .hero-title { font-family: var(--display); font-size: clamp(72px, 12vw, 160px); line-height: 0.92; letter-spacing: 0.02em; margin-bottom: 32px; opacity: 0; animation: fadeUp 0.8s 0.4s forwards; }
-  .hero-title em { font-family: var(--serif); font-style: italic; color: var(--orange); font-size: 0.85em; }
-  .hero-sub { font-size: 13px; line-height: 1.7; color: rgba(240,237,230,0.55); max-width: 480px; margin-bottom: 48px; opacity: 0; animation: fadeUp 0.8s 0.6s forwards; }
-  .hero-actions { display: flex; gap: 16px; align-items: center; opacity: 0; animation: fadeUp 0.8s 0.8s forwards; }
+  .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: 160px 48px 100px; position: relative; overflow: hidden; }
 
-  .btn-primary { font-family: var(--mono); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; background: var(--orange); color: var(--black); padding: 16px 32px; text-decoration: none; transition: background 0.2s, transform 0.2s; display: inline-block; }
-  .btn-primary:hover { background: var(--orange-dim); transform: translateY(-1px); }
-  .btn-ghost { font-family: var(--mono); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; border: 1px solid var(--border); color: rgba(240,237,230,0.6); padding: 16px 32px; text-decoration: none; transition: border-color 0.2s, color 0.2s; }
-  .btn-ghost:hover { border-color: rgba(240,237,230,0.4); color: var(--off-white); }
+  .hero-label { font-size: 10px; letter-spacing: 0.35em; text-transform: uppercase; color: var(--orange); margin-bottom: 28px; opacity: 0; animation: fadeUp 0.8s 0.3s forwards; display: flex; align-items: center; gap: 16px; }
+  .hero-label::before { content: ''; display: inline-block; width: 32px; height: 1px; background: var(--orange); }
 
-  .hero-stats { position: absolute; right: 40px; bottom: 80px; display: flex; flex-direction: column; gap: 32px; opacity: 0; animation: fadeIn 1s 1.2s forwards; }
+  .hero-title { font-family: var(--display); font-size: clamp(80px, 13vw, 170px); line-height: 0.9; letter-spacing: 0.01em; margin-bottom: 40px; overflow: hidden; }
+  .hero-title .line { display: block; opacity: 0; transform: translateY(100%); animation: slideUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+  .hero-title .line:nth-child(1) { animation-delay: 0.4s; }
+  .hero-title .line:nth-child(2) { animation-delay: 0.55s; }
+  .hero-title .line:nth-child(3) { animation-delay: 0.7s; }
+  .hero-title em { font-family: var(--serif); font-style: italic; color: var(--orange); font-size: 0.82em; }
+
+  .hero-sub { font-size: 13px; line-height: 1.8; color: rgba(240,237,230,0.5); max-width: 460px; margin-bottom: 52px; opacity: 0; animation: fadeUp 0.8s 0.9s forwards; }
+  .hero-actions { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; opacity: 0; animation: fadeUp 0.8s 1.05s forwards; }
+
+  .btn-primary { font-family: var(--mono); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; background: var(--orange); color: var(--black); padding: 17px 36px; text-decoration: none; transition: background 0.2s, transform 0.2s, box-shadow 0.2s; display: inline-block; position: relative; overflow: hidden; }
+  .btn-primary::after { content: ''; position: absolute; inset: 0; background: rgba(255,255,255,0.15); transform: translateX(-100%); transition: transform 0.3s; }
+  .btn-primary:hover::after { transform: translateX(0); }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(255,92,26,0.3); }
+
+  .btn-ghost { font-family: var(--mono); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; border: 1px solid var(--border); color: rgba(240,237,230,0.55); padding: 17px 36px; text-decoration: none; transition: border-color 0.2s, color 0.2s, transform 0.2s; display: inline-block; }
+  .btn-ghost:hover { border-color: rgba(240,237,230,0.35); color: var(--off-white); transform: translateY(-2px); }
+
+  .hero-stats { position: absolute; right: 48px; bottom: 100px; display: flex; flex-direction: column; gap: 40px; opacity: 0; animation: fadeIn 1.2s 1.3s forwards; }
   .stat { text-align: right; }
-  .stat-num { font-family: var(--display); font-size: 36px; color: var(--off-white); line-height: 1; }
-  .stat-label { font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(240,237,230,0.4); margin-top: 4px; }
+  .stat-num { font-family: var(--display); font-size: 42px; color: var(--off-white); line-height: 1; }
+  .stat-label { font-size: 9px; letter-spacing: 0.25em; text-transform: uppercase; color: rgba(240,237,230,0.35); margin-top: 6px; }
+
+  .scroll-hint { position: absolute; bottom: 40px; left: 48px; display: flex; align-items: center; gap: 12px; opacity: 0; animation: fadeIn 1s 1.5s forwards; }
+  .scroll-line { width: 1px; height: 48px; background: linear-gradient(to bottom, var(--orange), transparent); animation: scrollPulse 2s infinite; }
+  .scroll-text { font-size: 9px; letter-spacing: 0.25em; text-transform: uppercase; color: rgba(240,237,230,0.3); writing-mode: vertical-rl; }
+  @keyframes scrollPulse { 0%, 100% { opacity: 0.4; } 50% { opacity: 1; } }
 
   .divider { width: 100%; height: 1px; background: var(--border); }
+  section { padding: 110px 48px; }
 
-  section { padding: 100px 40px; }
-  .section-label { font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--orange); margin-bottom: 16px; }
-  .section-title { font-family: var(--display); font-size: clamp(40px, 6vw, 80px); line-height: 1; letter-spacing: 0.02em; margin-bottom: 48px; }
+  .section-label { font-size: 9px; letter-spacing: 0.35em; text-transform: uppercase; color: var(--orange); margin-bottom: 20px; display: flex; align-items: center; gap: 12px; }
+  .section-label::before { content: ''; display: inline-block; width: 20px; height: 1px; background: var(--orange); }
+  .section-title { font-family: var(--display); font-size: clamp(44px, 6vw, 84px); line-height: 0.97; letter-spacing: 0.02em; margin-bottom: 56px; }
 
-  .why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); margin-top: 60px; }
-  .why-card { background: var(--black); padding: 48px 40px; transition: background 0.3s; }
+  .why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); margin-top: 64px; }
+  .why-card { background: var(--black); padding: 52px 44px; transition: background 0.4s; position: relative; overflow: hidden; }
+  .why-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--orange); transform: scaleX(0); transform-origin: left; transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
   .why-card:hover { background: var(--mid); }
-  .why-num { font-size: 9px; letter-spacing: 0.2em; color: var(--orange); margin-bottom: 24px; }
-  .why-heading { font-family: var(--display); font-size: 28px; letter-spacing: 0.05em; margin-bottom: 16px; line-height: 1.1; }
-  .why-body { font-size: 12px; line-height: 1.8; color: rgba(240,237,230,0.5); }
+  .why-card:hover::before { transform: scaleX(1); }
+  .why-num { font-size: 9px; letter-spacing: 0.2em; color: var(--orange); margin-bottom: 28px; opacity: 0.7; }
+  .why-heading { font-family: var(--display); font-size: 30px; letter-spacing: 0.04em; margin-bottom: 18px; line-height: 1.05; }
+  .why-body { font-size: 12px; line-height: 1.85; color: rgba(240,237,230,0.48); }
 
   .product-section { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
   .product-visual { aspect-ratio: 1; background: var(--mid); display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
-  .product-visual::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 50% 50%, rgba(255,92,26,0.1) 0%, transparent 70%); }
-  .boot-placeholder { font-family: var(--display); font-size: 120px; opacity: 0.06; user-select: none; letter-spacing: -0.05em; }
-  .boot-label { position: absolute; bottom: 24px; left: 24px; font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(240,237,230,0.3); }
+  .product-visual::after { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 50% 50%, rgba(255,92,26,0.08) 0%, transparent 65%); animation: pulseGlow 4s ease-in-out infinite; }
+  @keyframes pulseGlow { 0%, 100% { opacity: 0.5; } 50% { opacity: 1; } }
+  .boot-placeholder { font-family: var(--display); font-size: 130px; opacity: 0.05; user-select: none; letter-spacing: -0.05em; position: relative; z-index: 1; }
+  .boot-label { position: absolute; bottom: 20px; left: 20px; font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(240,237,230,0.25); }
+  .corner { position: absolute; width: 20px; height: 20px; border-color: rgba(255,92,26,0.3); border-style: solid; }
+  .corner-tl { top: 16px; left: 16px; border-width: 1px 0 0 1px; }
+  .corner-tr { top: 16px; right: 16px; border-width: 1px 1px 0 0; }
+  .corner-bl { bottom: 16px; left: 16px; border-width: 0 0 1px 1px; }
+  .corner-br { bottom: 16px; right: 16px; border-width: 0 1px 1px 0; }
 
-  .detail-row { display: flex; justify-content: space-between; align-items: flex-start; padding: 20px 0; border-bottom: 1px solid var(--border); gap: 24px; }
+  .detail-row { display: flex; justify-content: space-between; align-items: flex-start; padding: 22px 0; border-bottom: 1px solid var(--border); gap: 24px; }
   .detail-row:first-child { border-top: 1px solid var(--border); }
-  .detail-key { font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(240,237,230,0.4); flex-shrink: 0; width: 130px; }
-  .detail-val { font-size: 12px; color: var(--off-white); text-align: right; line-height: 1.5; }
+  .detail-key { font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(240,237,230,0.38); flex-shrink: 0; width: 130px; padding-top: 2px; }
+  .detail-val { font-size: 12px; color: var(--off-white); text-align: right; line-height: 1.6; }
   .detail-val.protected { color: var(--orange); font-style: italic; }
 
-  .align-section { background: var(--mid); margin: 0 -40px; padding: 100px 40px; }
-  .align-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
-  .align-steps { display: flex; flex-direction: column; gap: 0; margin-top: 48px; }
-  .align-step { display: flex; gap: 24px; padding: 28px 0; border-bottom: 1px solid var(--border); }
-  .step-num { font-family: var(--display); font-size: 32px; color: rgba(240,237,230,0.15); flex-shrink: 0; width: 40px; line-height: 1; }
-  .step-title { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--off-white); margin-bottom: 8px; }
-  .step-body { font-size: 12px; line-height: 1.7; color: rgba(240,237,230,0.45); }
-  .align-badge { display: inline-block; border: 1px solid var(--orange); color: var(--orange); font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; padding: 8px 16px; margin-bottom: 32px; }
-  .align-statement { font-family: var(--display); font-size: clamp(32px, 4vw, 52px); line-height: 1.05; letter-spacing: 0.02em; margin-bottom: 24px; }
+  .align-section { background: var(--mid); margin: 0 -48px; padding: 110px 48px; position: relative; overflow: hidden; }
+  .align-section::before { content: 'ALIGN'; position: absolute; right: -20px; top: 50%; transform: translateY(-50%); font-family: var(--display); font-size: 240px; color: rgba(255,92,26,0.03); letter-spacing: -0.05em; pointer-events: none; white-space: nowrap; }
+  .align-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 90px; align-items: start; position: relative; }
+  .align-steps { display: flex; flex-direction: column; margin-top: 52px; }
+  .align-step { display: flex; gap: 28px; padding: 32px 0; border-bottom: 1px solid var(--border); transition: padding-left 0.3s; }
+  .align-step:hover { padding-left: 8px; }
+  .step-num { font-family: var(--display); font-size: 34px; color: rgba(240,237,230,0.1); flex-shrink: 0; width: 44px; line-height: 1; transition: color 0.3s; }
+  .align-step:hover .step-num { color: rgba(255,92,26,0.4); }
+  .step-title { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--off-white); margin-bottom: 10px; }
+  .step-body { font-size: 12px; line-height: 1.75; color: rgba(240,237,230,0.43); }
+
+  .align-badge { display: inline-block; border: 1px solid var(--orange); color: var(--orange); font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; padding: 8px 16px; margin-bottom: 36px; animation: badgePulse 3s ease-in-out infinite; }
+  @keyframes badgePulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(255,92,26,0); } 50% { box-shadow: 0 0 0 6px rgba(255,92,26,0.08); } }
+  .align-statement { font-family: var(--display); font-size: clamp(34px, 4vw, 56px); line-height: 1.04; letter-spacing: 0.02em; margin-bottom: 28px; }
   .align-statement em { font-family: var(--serif); font-style: italic; color: var(--orange); }
-  .align-body { font-size: 12px; line-height: 1.8; color: rgba(240,237,230,0.5); margin-bottom: 40px; }
+  .align-body { font-size: 12px; line-height: 1.85; color: rgba(240,237,230,0.48); margin-bottom: 44px; }
 
-  .cta-section { text-align: center; padding: 120px 40px; position: relative; overflow: hidden; }
-  .cta-section::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 50% 80% at 50% 50%, rgba(255,92,26,0.06) 0%, transparent 70%); }
-  .cta-eyebrow { font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--orange); margin-bottom: 24px; }
-  .cta-title { font-family: var(--display); font-size: clamp(48px, 8vw, 100px); line-height: 0.95; letter-spacing: 0.02em; margin-bottom: 32px; position: relative; }
-  .cta-sub { font-size: 13px; line-height: 1.7; color: rgba(240,237,230,0.5); max-width: 440px; margin: 0 auto 48px; }
-  .cta-actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+  .cta-section { text-align: center; padding: 140px 48px; position: relative; overflow: hidden; }
+  .cta-section::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 55% 70% at 50% 50%, rgba(255,92,26,0.07) 0%, transparent 70%); }
+  .cta-section::after { content: ''; position: absolute; inset: 0; background-image: linear-gradient(rgba(240,237,230,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(240,237,230,0.02) 1px, transparent 1px); background-size: 60px 60px; mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, black 0%, transparent 100%); -webkit-mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, black 0%, transparent 100%); pointer-events: none; }
+  .cta-eyebrow { font-size: 9px; letter-spacing: 0.35em; text-transform: uppercase; color: var(--orange); margin-bottom: 28px; position: relative; }
+  .cta-title { font-family: var(--display); font-size: clamp(56px, 9vw, 112px); line-height: 0.93; letter-spacing: 0.02em; margin-bottom: 36px; position: relative; }
+  .cta-sub { font-size: 13px; line-height: 1.8; color: rgba(240,237,230,0.48); max-width: 420px; margin: 0 auto 52px; position: relative; }
+  .cta-actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; position: relative; }
 
-  footer { border-top: 1px solid var(--border); padding: 40px; display: flex; justify-content: space-between; align-items: center; }
-  .footer-logo { font-family: var(--display); font-size: 18px; letter-spacing: 0.1em; }
+  footer { border-top: 1px solid var(--border); padding: 44px 48px; display: flex; justify-content: space-between; align-items: center; }
+  .footer-logo { font-family: var(--display); font-size: 20px; letter-spacing: 0.1em; text-decoration: none; color: var(--off-white); }
   .footer-logo span { color: var(--orange); }
-  .footer-meta { font-size: 10px; letter-spacing: 0.15em; color: rgba(240,237,230,0.3); text-align: right; line-height: 1.8; }
+  .footer-meta { font-size: 10px; letter-spacing: 0.12em; color: rgba(240,237,230,0.28); text-align: right; line-height: 1.9; }
 
-  @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+  .reveal { opacity: 0; transform: translateY(32px); transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+
+  @keyframes slideUp { from { opacity: 0; transform: translateY(100%); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
   @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
   @media (max-width: 768px) {
-    nav { padding: 20px 24px; }
+    .cursor, .cursor-ring { display: none; }
+    body { cursor: auto; }
+    nav { padding: 18px 24px; }
     .nav-link { display: none; }
-    .hero { padding: 120px 24px 60px; }
-    .hero-stats { display: none; }
-    section { padding: 70px 24px; }
-    .align-section { margin: 0 -24px; padding: 70px 24px; }
+    .hero { padding: 110px 24px 80px; }
+    .hero-stats, .scroll-hint { display: none; }
+    section { padding: 80px 24px; }
+    .align-section { margin: 0 -24px; padding: 80px 24px; }
     .why-grid { grid-template-columns: 1fr; }
-    .product-section { grid-template-columns: 1fr; gap: 40px; }
-    .align-inner { grid-template-columns: 1fr; gap: 40px; }
-    .cta-section { padding: 80px 24px; }
-    footer { padding: 32px 24px; flex-direction: column; gap: 16px; text-align: center; }
+    .product-section { grid-template-columns: 1fr; gap: 48px; }
+    .align-inner { grid-template-columns: 1fr; gap: 48px; }
+    .cta-section { padding: 90px 24px; }
+    footer { padding: 36px 24px; flex-direction: column; gap: 20px; text-align: center; }
     .footer-meta { text-align: center; }
   }
 </style>
 </head>
 <body>
 
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+
 <nav>
-  <div class="nav-logo">Squach<span>Acers™</span></div>
+  <a href="#" class="nav-logo">Squach<span>Acers™</span></a>
   <div class="nav-right">
     <a href="#product" class="nav-link">Product</a>
     <a href="#technology" class="nav-link">Technology</a>
-    <a href="#contact" class="nav-cta">Request Deck</a>
+    <a href="mailto:yetesquach@gmail.com?subject=SquachAcers%20Investor%20Inquiry" class="nav-cta">Request Deck</a>
   </div>
 </nav>
 
 <section class="hero">
-  <div class="hero-bg"></div>
   <div class="hero-label">Footwear Division · EST. 2026 · Patent Pending</div>
-  <h1 class="hero-title">The Boot<br>That Finds<br><em>You First.</em></h1>
-  <p class="hero-sub">A modular adaptive footwear platform unlike anything currently on the market. Five colorways. One patent-pending mechanism. Details available to serious partners under NDA.</p>
+  <h1 class="hero-title">
+    <span class="line">The Boot</span>
+    <span class="line">That Finds</span>
+    <span class="line"><em>You First.</em></span>
+  </h1>
+  <p class="hero-sub">A modular adaptive footwear platform unlike anything on the market. Five colorways. One patent-pending mechanism. Details available to serious partners under NDA.</p>
   <div class="hero-actions">
-    <a href="#contact" class="btn-primary">Request Investor Deck</a>
+    <a href="mailto:yetesquach@gmail.com?subject=SquachAcers%20Investor%20Inquiry" class="btn-primary">Request Investor Deck</a>
     <a href="#product" class="btn-ghost">See the Build →</a>
   </div>
   <div class="hero-stats">
@@ -173,28 +246,32 @@
     <div class="stat"><div class="stat-num">IP</div><div class="stat-label">Protected</div></div>
     <div class="stat"><div class="stat-num">'26</div><div class="stat-label">Launch</div></div>
   </div>
+  <div class="scroll-hint">
+    <div class="scroll-line"></div>
+    <span class="scroll-text">Scroll</span>
+  </div>
 </section>
 
 <div class="divider"></div>
 
 <section id="why">
-  <div class="section-label">01 — The Opportunity</div>
-  <h2 class="section-title">Why This.<br>Why Now.</h2>
+  <div class="section-label reveal">01 — The Opportunity</div>
+  <h2 class="section-title reveal">Why This.<br>Why Now.</h2>
   <div class="why-grid">
-    <div class="why-card">
+    <div class="why-card reveal reveal-delay-1">
       <div class="why-num">01</div>
       <div class="why-heading">No One Has Built This</div>
       <div class="why-body">The modular adaptive platform at the core of Apex Predator does not exist in the current market. The mechanism is patent pending. First mover advantage is intact.</div>
     </div>
-    <div class="why-card">
+    <div class="why-card reveal reveal-delay-2">
       <div class="why-num">02</div>
       <div class="why-heading">Terrain No Boot Touches</div>
       <div class="why-body">Engineered for the space between civilization and the unknown — where outdoor performance meets everyday wearability. A category that's underserved and growing.</div>
     </div>
-    <div class="why-card">
+    <div class="why-card reveal reveal-delay-3">
       <div class="why-num">03</div>
       <div class="why-heading">Platform, Not Just a Product</div>
-      <div class="why-body">Squach Align turns the boot into a system — phone-based fit scanning, modular response, and a software layer that competitors can't replicate without the IP.</div>
+      <div class="why-body">Squach Align turns the boot into a system — phone-based fit scanning, modular response, and a software layer competitors can't replicate without the IP.</div>
     </div>
   </div>
 </section>
@@ -202,17 +279,21 @@
 <div class="divider"></div>
 
 <section id="product">
-  <div class="section-label">02 — The Product</div>
+  <div class="section-label reveal">02 — The Product</div>
   <div class="product-section">
-    <div class="product-visual">
+    <div class="product-visual reveal">
+      <div class="corner corner-tl"></div>
+      <div class="corner corner-tr"></div>
+      <div class="corner corner-bl"></div>
+      <div class="corner corner-br"></div>
       <div class="boot-placeholder">AP</div>
-      <div class="boot-label">Apex Predator Boot · Sample Imagery TBD</div>
+      <div class="boot-label">Apex Predator · Imagery TBD</div>
     </div>
-    <div class="product-details">
+    <div class="product-details reveal reveal-delay-2">
       <h2 class="section-title">Nothing<br>Decorative.</h2>
       <div class="detail-row"><span class="detail-key">Outsole</span><span class="detail-val protected">Protected · NDA</span></div>
       <div class="detail-row"><span class="detail-key">Entry System</span><span class="detail-val">Italy-sourced side entry<br>Waterproof</span></div>
-      <div class="detail-row"><span class="detail-key">Lacing</span><span class="detail-val">Tactical paracord<br>PMS 804 C</span></div>
+      <div class="detail-row"><span class="detail-key">Lacing</span><span class="detail-val">Tactical paracord · PMS 804 C</span></div>
       <div class="detail-row"><span class="detail-key">Upper</span><span class="detail-val">Canvas · Polymer reinforced<br>toe & heel</span></div>
       <div class="detail-row"><span class="detail-key">Core Mechanism</span><span class="detail-val protected">Patent Pending · NDA Required</span></div>
       <div class="detail-row"><span class="detail-key">Colorways</span><span class="detail-val">Forest Green · All Black · Apex Orange · Desert Sand · Snow White</span></div>
@@ -222,51 +303,82 @@
 
 <div class="divider"></div>
 
-<section id="technology" style="padding: 0;">
+<section id="technology" style="padding:0;">
   <div class="align-section">
     <div class="align-inner">
       <div>
-        <div class="section-label">03 — Technology</div>
-        <h2 class="section-title" style="margin-bottom: 0;">Squach<br><em style="font-family: var(--serif); font-style: italic; color: var(--orange);">Align™</em></h2>
+        <div class="section-label reveal">03 — Technology</div>
+        <h2 class="section-title reveal" style="margin-bottom:0;">Squach<br><em style="font-family:var(--serif);font-style:italic;color:var(--orange);">Align™</em></h2>
         <div class="align-steps">
-          <div class="align-step">
+          <div class="align-step reveal reveal-delay-1">
             <div class="step-num">01</div>
-            <div class="step-content"><div class="step-title">Phone-Based Scan</div><div class="step-body">No equipment. No clinic. Your phone reads what most footwear ignores entirely.</div></div>
+            <div><div class="step-title">Phone-Based Scan</div><div class="step-body">No equipment. No clinic. Your phone reads what most footwear ignores entirely.</div></div>
           </div>
-          <div class="align-step">
+          <div class="align-step reveal reveal-delay-2">
             <div class="step-num">02</div>
-            <div class="step-content"><div class="step-title">Alignment Read</div><div class="step-body">The system maps alignment data and feeds it directly to the modular platform.</div></div>
+            <div><div class="step-title">Alignment Read</div><div class="step-body">The system maps your alignment and feeds it directly to the modular platform.</div></div>
           </div>
-          <div class="align-step">
+          <div class="align-step reveal reveal-delay-3">
             <div class="step-num">03</div>
-            <div class="step-content"><div class="step-title">Modular Response</div><div class="step-body">The boot adapts to you. Configuration details protected. Available under NDA.</div></div>
+            <div><div class="step-title">Modular Response</div><div class="step-body">The boot adapts to you. Configuration details protected. Available under NDA.</div></div>
           </div>
         </div>
       </div>
-      <div class="align-right">
+      <div class="reveal reveal-delay-2" style="padding-top:20px;">
         <div class="align-badge">Patent Pending</div>
         <div class="align-statement">Your feet have been trying to tell you something.<br><em>We built the boot that listens.</em></div>
         <p class="align-body">Nothing on the market does what Squach Align does. The full technical picture is available to serious partners. The mechanism stays protected until you're in the room.</p>
-        <a href="#contact" class="btn-primary">Get In The Room →</a>
+        <a href="mailto:yetesquach@gmail.com?subject=SquachAcers%20Investor%20Inquiry" class="btn-primary">Get In The Room →</a>
       </div>
     </div>
   </div>
 </section>
 
 <section id="contact" class="cta-section">
-  <div class="cta-eyebrow">04 — Partnership</div>
-  <h2 class="cta-title">Serious<br>Partners<br>Only.</h2>
-  <p class="cta-sub">The full deck, financials, and technical documentation are available under NDA. If you're ready to be in the room, we're ready to talk.</p>
-  <div class="cta-actions">
+  <div class="cta-eyebrow reveal">04 — Partnership</div>
+  <h2 class="cta-title reveal">Serious<br>Partners<br>Only.</h2>
+  <p class="cta-sub reveal">The full deck, financials, and technical documentation are available under NDA. If you're ready to be in the room, we're ready to talk.</p>
+  <div class="cta-actions reveal">
     <a href="mailto:yetesquach@gmail.com?subject=SquachAcers%20Investor%20Inquiry" class="btn-primary">Request the Deck</a>
-    <a href="https://squachacers.com" class="btn-ghost">Visit Main Site →</a>
+    <a href="https://squachacers.com" target="_blank" rel="noopener" class="btn-ghost">Visit Main Site →</a>
   </div>
 </section>
 
 <footer>
-  <div class="footer-logo">Squach<span>Acers™</span></div>
+  <a href="#" class="footer-logo">Squach<span>Acers™</span></a>
   <div class="footer-meta">EST. 2026 · Quincy, Florida<br>Trademark Filed · Patent Pending · All Rights Reserved</div>
 </footer>
 
+<script>
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  let mx = 0, my = 0, rx = 0, ry = 0;
+  document.addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY;
+    cursor.style.left = mx + 'px';
+    cursor.style.top = my + 'px';
+  });
+  (function animateRing() {
+    rx += (mx - rx) * 0.12;
+    ry += (my - ry) * 0.12;
+    ring.style.left = rx + 'px';
+    ring.style.top = ry + 'px';
+    requestAnimationFrame(animateRing);
+  })();
+  document.querySelectorAll('a, button').forEach(el => {
+    el.addEventListener('mouseenter', () => { cursor.classList.add('hovering'); ring.classList.add('hovering'); });
+    el.addEventListener('mouseleave', () => { cursor.classList.remove('hovering'); ring.classList.remove('hovering'); });
+  });
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+    });
+  });
+</script>
 </body>
-</html>
+       </html>
