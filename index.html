@@ -3,323 +3,346 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Squach Paddles™ — Pickleball. But Make It Cosmic.</title>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@300;400;600;700&family=Barlow:wght@300;400&display=swap" rel="stylesheet">
+<title>SquachAcers™ — The Cryptid Collectors' Series</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cinzel:wght@400;600;700&family=Barlow+Condensed:wght@300;400;600;700&family=Barlow:wght@300;400&display=swap" rel="stylesheet">
 <style>
-*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-:root {
-  --black: #080808;
-  --white: #f5f5f0;
-  --green: #1a4a2e;
-  --green-accent: #3ddc84;
-  --gold: #c8a84b;
-  --mid: #111111;
-  --border: rgba(245,245,240,0.1);
-  --display: 'Bebas Neue', sans-serif;
-  --body: 'Barlow', sans-serif;
-  --cond: 'Barlow Condensed', sans-serif;
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --void:#02020a;
+  --deep:#060612;
+  --mid:#0c0c1e;
+  --surface:#12122a;
+  --white:#f0eeea;
+  --gold:#c8960c;
+  --gold-light:#f0b429;
+  --border:rgba(200,150,12,0.15);
+  --display:'Bebas Neue',sans-serif;
+  --serif:'Cinzel',serif;
+  --cond:'Barlow Condensed',sans-serif;
+  --body:'Barlow',sans-serif;
 }
-html { scroll-behavior: smooth; }
-body { background: var(--black); color: var(--white); font-family: var(--body); overflow-x: hidden; }
-body.no-scroll { overflow: hidden; }
-body::after { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E"); pointer-events: none; z-index: 9000; }
+html{scroll-behavior:smooth;}
+body{background:var(--void);color:var(--white);font-family:var(--body);overflow-x:hidden;cursor:none;}
+body.no-scroll{overflow:hidden;}
+body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");pointer-events:none;z-index:9000;}
 
-/* INTRO */
-#intro { position: fixed; inset: 0; z-index: 8000; background: #000; display: flex; flex-direction: column; align-items: center; justify-content: center; overflow: hidden; transition: opacity 0.8s ease, visibility 0.8s ease; }
-#intro.hide { opacity: 0; visibility: hidden; pointer-events: none; }
-.intro-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 80% 80% at 50% 50%, rgba(61,220,132,0.04) 0%, transparent 70%); }
-.intro-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(61,220,132,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(61,220,132,0.04) 1px, transparent 1px); background-size: 80px 80px; animation: gridZoom 4s ease-out forwards; }
-@keyframes gridZoom { 0% { transform: scale(2); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
-.intro-scan { position: absolute; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--green-accent), transparent); animation: scanLine 2s ease-in-out forwards; opacity: 0.6; top: 0; }
-@keyframes scanLine { 0% { top: 0%; opacity: 0.8; } 100% { top: 100%; opacity: 0; } }
-.intro-brackets { position: absolute; inset: 40px; pointer-events: none; opacity: 0; animation: fadeIn 0.5s 0.5s forwards; }
-.bracket { position: absolute; width: 48px; height: 48px; border-color: rgba(61,220,132,0.4); border-style: solid; }
-.bracket-tl { top: 0; left: 0; border-width: 2px 0 0 2px; }
-.bracket-tr { top: 0; right: 0; border-width: 2px 2px 0 0; }
-.bracket-bl { bottom: 0; left: 0; border-width: 0 0 2px 2px; }
-.bracket-br { bottom: 0; right: 0; border-width: 0 2px 2px 0; }
-.intro-stars { position: absolute; inset: 0; pointer-events: none; }
-.intro-content { position: relative; z-index: 2; text-align: center; display: flex; flex-direction: column; align-items: center; }
-.intro-eyebrow { font-family: var(--cond); font-size: 11px; font-weight: 600; letter-spacing: 0.5em; text-transform: uppercase; color: var(--green-accent); opacity: 0; animation: fadeUp 0.6s 0.8s forwards; margin-bottom: 24px; }
-.intro-logo { font-family: var(--display); font-size: clamp(64px, 15vw, 160px); line-height: 0.85; letter-spacing: 0.02em; opacity: 0; animation: introLogoAnim 1s 1s cubic-bezier(0.16,1,0.3,1) forwards; }
-.intro-logo .line1 { display: block; color: var(--white); }
-.intro-logo .line2 { display: block; color: var(--green-accent); }
-@keyframes introLogoAnim { 0% { opacity: 0; transform: translateY(60px) skewY(3deg); } 100% { opacity: 1; transform: translateY(0) skewY(0); } }
-.intro-tagline { font-family: var(--cond); font-size: clamp(14px, 3vw, 20px); font-weight: 300; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(245,245,240,0.4); opacity: 0; animation: fadeUp 0.6s 1.6s forwards; margin-top: 20px; }
-.intro-bar-wrap { width: 240px; height: 2px; background: rgba(245,245,240,0.08); margin-top: 48px; opacity: 0; animation: fadeIn 0.4s 1.8s forwards; overflow: hidden; }
-.intro-bar { height: 100%; background: var(--green-accent); width: 0%; animation: loadBar 1.4s 2s cubic-bezier(0.4,0,0.2,1) forwards; }
-@keyframes loadBar { from { width: 0%; } to { width: 100%; } }
-.intro-enter { font-family: var(--cond); font-size: 11px; font-weight: 600; letter-spacing: 0.4em; text-transform: uppercase; color: rgba(245,245,240,0.3); opacity: 0; animation: fadeIn 0.6s 3.5s forwards; margin-top: 24px; cursor: pointer; transition: color 0.2s; }
-.intro-enter:hover { color: var(--green-accent); }
+.cursor{position:fixed;width:10px;height:10px;background:var(--gold);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .3s,height .3s;}
+.cursor-ring{position:fixed;width:40px;height:40px;border:1px solid rgba(200,150,12,0.5);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);}
+.cursor.big{width:20px;height:20px;}
+.cursor-ring.big{width:64px;height:64px;opacity:.3;}
 
-/* MAIN */
-#main { opacity: 0; transition: opacity 0.8s ease; }
-#main.show { opacity: 1; }
+.orb{position:fixed;border-radius:50%;pointer-events:none;filter:blur(100px);}
+.orb1{width:600px;height:600px;background:radial-gradient(circle,rgba(200,150,12,0.06),transparent 70%);top:-200px;right:-200px;animation:orbDrift 25s infinite ease-in-out;}
+.orb2{width:500px;height:500px;background:radial-gradient(circle,rgba(74,0,128,0.08),transparent 70%);bottom:10%;left:-200px;animation:orbDrift 20s -8s infinite ease-in-out;}
+.orb3{width:400px;height:400px;background:radial-gradient(circle,rgba(26,58,26,0.1),transparent 70%);top:40%;right:10%;animation:orbDrift 18s -4s infinite ease-in-out;}
+@keyframes orbDrift{0%,100%{transform:translate(0,0) scale(1);}33%{transform:translate(40px,-50px) scale(1.08);}66%{transform:translate(-30px,30px) scale(.93);}}
 
-/* NAV */
-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 500; display: flex; justify-content: space-between; align-items: center; padding: 0 48px; height: 68px; background: rgba(8,8,8,0.92); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); }
-.nav-logo { font-family: var(--display); font-size: 20px; letter-spacing: 0.08em; text-decoration: none; color: var(--white); }
-.nav-logo span { color: var(--green-accent); }
-.nav-links { display: flex; gap: 36px; list-style: none; }
-.nav-links a { font-family: var(--cond); font-size: 12px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(245,245,240,0.5); text-decoration: none; transition: color 0.2s; }
-.nav-links a:hover { color: var(--white); }
-.nav-cta { font-family: var(--cond); font-size: 11px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; background: var(--green-accent); color: var(--black); padding: 11px 22px; text-decoration: none; transition: background 0.2s, transform 0.15s; display: inline-block; }
-.nav-cta:hover { background: #56f49e; transform: translateY(-1px); }
+#intro{position:fixed;inset:0;z-index:8000;background:#000;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;transition:opacity 1s ease,visibility 1s ease;}
+#intro.hide{opacity:0;visibility:hidden;pointer-events:none;}
+.intro-cosmos{position:absolute;inset:0;}
+.cosmos-star{position:absolute;background:white;border-radius:50%;animation:starTwinkle var(--d,3s) var(--dl,0s) infinite ease-in-out;}
+@keyframes starTwinkle{0%,100%{opacity:var(--mn,.05);transform:scale(1);}50%{opacity:var(--mx,.8);transform:scale(1.5);}}
+.intro-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(200,150,12,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(200,150,12,0.03) 1px,transparent 1px);background-size:60px 60px;animation:gridIn 3s ease-out forwards;}
+@keyframes gridIn{0%{transform:perspective(800px) rotateX(60deg) scale(2);opacity:0;}100%{transform:perspective(800px) rotateX(0deg) scale(1);opacity:1;}}
+.intro-scan{position:absolute;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);top:0;animation:scanDown 2.5s ease-in-out forwards;opacity:.8;}
+@keyframes scanDown{0%{top:0;opacity:.8;}100%{top:100%;opacity:0;}}
+.intro-brackets{position:absolute;inset:48px;pointer-events:none;opacity:0;animation:fadeIn .6s .6s forwards;}
+.bk{position:absolute;width:56px;height:56px;border-color:rgba(200,150,12,.35);border-style:solid;}
+.bk-tl{top:0;left:0;border-width:2px 0 0 2px;}
+.bk-tr{top:0;right:0;border-width:2px 2px 0 0;}
+.bk-bl{bottom:0;left:0;border-width:0 0 2px 2px;}
+.bk-br{bottom:0;right:0;border-width:0 2px 2px 0;}
+.intro-center{position:relative;z-index:2;text-align:center;display:flex;flex-direction:column;align-items:center;}
+.intro-pre{font-family:var(--cond);font-size:11px;font-weight:600;letter-spacing:.6em;text-transform:uppercase;color:var(--gold);opacity:0;animation:fadeUp .7s .9s forwards;margin-bottom:20px;}
+.intro-logo{font-family:var(--display);font-size:clamp(56px,14vw,150px);line-height:.85;letter-spacing:.03em;opacity:0;animation:logoSlam 1.1s 1.1s cubic-bezier(.16,1,.3,1) forwards;}
+.intro-logo .l1{display:block;color:var(--white);}
+.intro-logo .l2{display:block;color:var(--gold);}
+@keyframes logoSlam{0%{opacity:0;transform:translateY(80px) skewY(4deg) scale(.9);}100%{opacity:1;transform:translateY(0) skewY(0) scale(1);}}
+.intro-tag{font-family:var(--serif);font-size:clamp(12px,2.5vw,18px);font-weight:400;letter-spacing:.25em;text-transform:uppercase;color:rgba(240,238,234,.4);opacity:0;animation:fadeUp .7s 1.8s forwards;margin-top:16px;}
+.intro-series{font-family:var(--cond);font-size:10px;font-weight:600;letter-spacing:.4em;text-transform:uppercase;color:var(--gold);opacity:0;animation:fadeUp .7s 2.1s forwards;margin-top:12px;border:1px solid rgba(200,150,12,.3);padding:6px 20px;}
+.intro-bar-wrap{width:200px;height:1px;background:rgba(200,150,12,.15);margin-top:48px;opacity:0;animation:fadeIn .4s 2.4s forwards;overflow:hidden;}
+.intro-bar{height:100%;background:var(--gold);width:0;animation:barFill 1.6s 2.6s cubic-bezier(.4,0,.2,1) forwards;}
+@keyframes barFill{from{width:0;}to{width:100%;}}
+.intro-enter{font-family:var(--cond);font-size:10px;font-weight:600;letter-spacing:.5em;text-transform:uppercase;color:rgba(200,150,12,.4);opacity:0;animation:fadeIn .7s 4.3s forwards;margin-top:20px;cursor:pointer;transition:color .2s;}
+.intro-enter:hover{color:var(--gold);}
 
-/* BANNER */
-.banner { position: fixed; top: 68px; left: 0; right: 0; z-index: 499; background: var(--green); padding: 10px 48px; display: flex; justify-content: center; align-items: center; gap: 28px; }
-.banner-text { font-family: var(--cond); font-size: 11px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--green-accent); }
-.countdown { display: flex; gap: 16px; align-items: center; }
-.cd-unit { text-align: center; }
-.cd-num { font-family: var(--display); font-size: 22px; line-height: 1; color: var(--white); }
-.cd-label { font-family: var(--cond); font-size: 8px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(245,245,240,0.45); margin-top: 2px; }
-.cd-sep { font-family: var(--display); font-size: 20px; color: rgba(245,245,240,0.25); margin-bottom: 12px; }
+#main{opacity:0;transition:opacity 1s ease;}
+#main.show{opacity:1;}
 
-/* HERO */
-.hero { min-height: 100vh; padding-top: 116px; display: grid; grid-template-columns: 1fr 1fr; align-items: center; position: relative; overflow: hidden; }
-.hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 50% 70% at 100% 50%, rgba(61,220,132,0.07) 0%, transparent 60%), radial-gradient(ellipse 40% 50% at 0% 80%, rgba(26,74,46,0.25) 0%, transparent 60%); }
-.stars { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
-.star { position: absolute; background: white; border-radius: 50%; animation: twinkle var(--dur,3s) var(--delay,0s) infinite ease-in-out; }
-@keyframes twinkle { 0%,100% { opacity: var(--mn,.1); transform: scale(1); } 50% { opacity: var(--mx,.5); transform: scale(1.3); } }
-.hero-left { padding: 80px 56px 80px 80px; position: relative; z-index: 2; }
-.hero-badge { display: inline-flex; align-items: center; gap: 8px; border: 1px solid var(--green-accent); color: var(--green-accent); font-family: var(--cond); font-size: 10px; font-weight: 600; letter-spacing: 0.25em; text-transform: uppercase; padding: 7px 14px; margin-bottom: 28px; animation: badgePulse 3s ease-in-out infinite; }
-@keyframes badgePulse { 0%,100% { box-shadow: 0 0 0 0 rgba(61,220,132,0); } 50% { box-shadow: 0 0 0 8px rgba(61,220,132,0.06); } }
-.hero-title { font-family: var(--display); font-size: clamp(68px,10vw,130px); line-height: 0.88; letter-spacing: 0.01em; margin-bottom: 24px; }
-.hero-title .accent { color: var(--green-accent); }
-.hero-title .italic-line { font-family: 'Georgia',serif; font-style: italic; font-size: 0.68em; color: rgba(245,245,240,0.55); display: block; }
-.hero-sub { font-size: 15px; line-height: 1.75; color: rgba(245,245,240,0.52); max-width: 400px; margin-bottom: 36px; font-weight: 300; }
-.hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 52px; }
-.btn-primary { font-family: var(--cond); font-size: 12px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; background: var(--green-accent); color: var(--black); padding: 16px 32px; text-decoration: none; transition: background 0.2s, transform 0.2s, box-shadow 0.2s; display: inline-block; position: relative; overflow: hidden; }
-.btn-primary:hover { background: #56f49e; transform: translateY(-2px); box-shadow: 0 14px 36px rgba(61,220,132,0.22); }
-.btn-ghost { font-family: var(--cond); font-size: 12px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; border: 1px solid rgba(245,245,240,0.18); color: rgba(245,245,240,0.55); padding: 16px 32px; text-decoration: none; transition: all 0.2s; display: inline-block; }
-.btn-ghost:hover { border-color: rgba(245,245,240,0.45); color: var(--white); transform: translateY(-2px); }
-.hero-meta { display: flex; gap: 32px; }
-.meta-num { font-family: var(--display); font-size: 28px; color: var(--white); line-height: 1; }
-.meta-label { font-family: var(--cond); font-size: 9px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(245,245,240,0.32); margin-top: 4px; }
-.hero-right { position: relative; z-index: 2; height: 100vh; display: flex; align-items: center; justify-content: center; }
-.hero-paddle-showcase { position: relative; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; }
-.hero-glow { position: absolute; width: 420px; height: 420px; background: radial-gradient(circle, rgba(61,220,132,0.1), transparent 70%); border-radius: 50%; animation: glowPulse 4s ease-in-out infinite; }
-@keyframes glowPulse { 0%,100% { transform: scale(1); opacity: 0.6; } 50% { transform: scale(1.12); opacity: 1; } }
-.hero-paddle-img { width: 62%; max-width: 400px; object-fit: contain; filter: drop-shadow(0 40px 80px rgba(61,220,132,0.12)) drop-shadow(0 0 60px rgba(0,0,0,0.8)); animation: floatPaddle 6s ease-in-out infinite; position: relative; z-index: 2; }
-@keyframes floatPaddle { 0%,100% { transform: translateY(0) rotate(-3deg); } 50% { transform: translateY(-16px) rotate(-1deg); } }
+nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;justify-content:space-between;align-items:center;padding:0 48px;height:70px;background:rgba(2,2,10,.9);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
+.nav-logo{font-family:var(--display);font-size:22px;letter-spacing:.1em;text-decoration:none;color:var(--white);}
+.nav-logo span{color:var(--gold);}
+.nav-links{display:flex;gap:36px;list-style:none;}
+.nav-links a{font-family:var(--cond);font-size:12px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:rgba(240,238,234,.45);text-decoration:none;transition:color .2s;}
+.nav-links a:hover{color:var(--gold);}
+.nav-cta{font-family:var(--cond);font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;background:linear-gradient(135deg,var(--gold),var(--gold-light));color:#000;padding:11px 24px;text-decoration:none;transition:all .2s;display:inline-block;}
+.nav-cta:hover{transform:translateY(-1px);box-shadow:0 8px 24px rgba(200,150,12,.3);}
 
-/* MARQUEE */
-.marquee-wrap { overflow: hidden; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 16px 0; background: var(--mid); }
-.marquee-track { display: flex; animation: marquee 22s linear infinite; width: max-content; }
-.marquee-item { font-family: var(--display); font-size: 13px; letter-spacing: 0.18em; text-transform: uppercase; padding: 0 28px; white-space: nowrap; display: flex; align-items: center; gap: 12px; }
-.marquee-item span { color: var(--green-accent); }
-@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.banner{position:fixed;top:70px;left:0;right:0;z-index:499;background:linear-gradient(90deg,#0a0510,#1a0a00,#0a0510);border-bottom:1px solid var(--border);padding:10px 48px;display:flex;justify-content:center;align-items:center;gap:32px;}
+.banner-text{font-family:var(--cond);font-size:11px;font-weight:600;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);}
+.countdown{display:flex;gap:18px;align-items:center;}
+.cd-unit{text-align:center;}
+.cd-num{font-family:var(--display);font-size:24px;line-height:1;color:var(--white);}
+.cd-label{font-family:var(--cond);font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:rgba(240,238,234,.4);margin-top:2px;}
+.cd-sep{font-family:var(--display);font-size:20px;color:rgba(200,150,12,.4);margin-bottom:14px;}
 
-/* PADDLES */
-.paddles-section { padding: 110px 80px; }
-.section-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 56px; }
-.section-eyebrow { font-family: var(--cond); font-size: 10px; font-weight: 600; letter-spacing: 0.3em; text-transform: uppercase; color: var(--green-accent); margin-bottom: 10px; display: flex; align-items: center; gap: 10px; }
-.section-eyebrow::before { content: ''; display: inline-block; width: 20px; height: 1px; background: var(--green-accent); }
-.section-title { font-family: var(--display); font-size: clamp(40px,5vw,68px); line-height: 0.95; }
-.section-link { font-family: var(--cond); font-size: 12px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(245,245,240,0.45); text-decoration: none; display: flex; align-items: center; gap: 8px; transition: color 0.2s; flex-shrink: 0; }
-.section-link:hover { color: var(--white); }
-.paddles-grid { display: grid; grid-template-columns: repeat(5,1fr); gap: 2px; }
-.paddle-card { background: var(--mid); position: relative; overflow: hidden; cursor: pointer; transition: transform 0.4s cubic-bezier(0.16,1,0.3,1); }
-.paddle-card:hover { transform: translateY(-8px); z-index: 2; }
-.paddle-card:first-child { grid-column: span 2; }
-.paddle-img-wrap { aspect-ratio: 3/4; overflow: hidden; background: #0d0d0d; display: flex; align-items: center; justify-content: center; position: relative; }
-.paddle-img-wrap::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom, transparent 50%, rgba(0,0,0,0.65) 100%); }
-.paddle-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s cubic-bezier(0.16,1,0.3,1); }
-.paddle-card:hover .paddle-img { transform: scale(1.05); }
-.paddle-info { padding: 18px 18px 22px; }
-.paddle-tag { font-family: var(--cond); font-size: 9px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--green-accent); margin-bottom: 5px; }
-.paddle-name { font-family: var(--display); font-size: 20px; letter-spacing: 0.04em; line-height: 1.1; margin-bottom: 3px; }
-.paddle-sub { font-family: var(--cond); font-size: 11px; color: rgba(245,245,240,0.38); letter-spacing: 0.1em; }
-.paddle-badge { position: absolute; top: 14px; right: 14px; background: var(--green-accent); color: var(--black); font-family: var(--cond); font-size: 9px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; padding: 5px 10px; z-index: 3; }
-.paddle-badge.limited { background: var(--gold); color: #000; }
-.paddle-badge.new { background: var(--white); color: #000; }
+.hero{min-height:100vh;padding-top:120px;position:relative;overflow:hidden;display:grid;grid-template-columns:1fr 1fr;align-items:center;}
+.hero-void{position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 70% 50%,rgba(74,0,128,0.08) 0%,transparent 60%),radial-gradient(ellipse 40% 60% at 0% 100%,rgba(26,58,26,.12) 0%,transparent 60%),radial-gradient(ellipse 50% 50% at 100% 0%,rgba(200,150,12,.04) 0%,transparent 60%);}
+.hero-stars{position:absolute;inset:0;overflow:hidden;pointer-events:none;}
+.hstar{position:absolute;background:white;border-radius:50%;animation:twinkle var(--d,3s) var(--dl,0s) infinite ease-in-out;}
+@keyframes twinkle{0%,100%{opacity:var(--mn,.05);}50%{opacity:var(--mx,.6);}}
+.shoot{position:absolute;width:120px;height:1px;background:linear-gradient(90deg,transparent,rgba(200,150,12,.8),transparent);animation:shoot var(--sd,8s) var(--sdl,0s) infinite linear;opacity:0;}
+@keyframes shoot{0%{opacity:0;transform:translateX(-200px) translateY(0) rotate(-30deg);}5%{opacity:1;}20%{opacity:0;transform:translateX(200vw) translateY(100px) rotate(-30deg);}100%{opacity:0;transform:translateX(200vw) translateY(100px) rotate(-30deg);}}
+.hero-left{padding:60px 56px 60px 80px;position:relative;z-index:2;}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:10px;border:1px solid rgba(200,150,12,.35);color:var(--gold);font-family:var(--cond);font-size:10px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;padding:8px 16px;margin-bottom:32px;animation:badgePulse 3s ease-in-out infinite;}
+@keyframes badgePulse{0%,100%{box-shadow:0 0 0 0 rgba(200,150,12,0);}50%{box-shadow:0 0 0 8px rgba(200,150,12,.06);}}
+.hero-title{font-family:var(--display);font-size:clamp(60px,9vw,120px);line-height:.88;letter-spacing:.02em;margin-bottom:8px;}
+.hero-title .g{color:var(--gold);}
+.hero-title .serif-line{font-family:var(--serif);font-size:.5em;color:rgba(240,238,234,.45);display:block;letter-spacing:.08em;font-weight:400;margin-top:6px;}
+.hero-divider{width:80px;height:1px;background:linear-gradient(90deg,var(--gold),transparent);margin:24px 0;}
+.hero-sub{font-size:15px;line-height:1.8;color:rgba(240,238,234,.5);max-width:420px;margin-bottom:40px;font-weight:300;}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:56px;}
+.btn-gold{font-family:var(--cond);font-size:12px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;background:linear-gradient(135deg,var(--gold),var(--gold-light));color:#000;padding:16px 36px;text-decoration:none;transition:all .2s;display:inline-block;position:relative;overflow:hidden;}
+.btn-gold::after{content:'';position:absolute;inset:0;background:rgba(255,255,255,.15);transform:translateX(-100%);transition:transform .3s;}
+.btn-gold:hover::after{transform:translateX(0);}
+.btn-gold:hover{transform:translateY(-2px);box-shadow:0 16px 40px rgba(200,150,12,.3);}
+.btn-ghost{font-family:var(--cond);font-size:12px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;border:1px solid rgba(200,150,12,.3);color:rgba(240,238,234,.55);padding:16px 36px;text-decoration:none;transition:all .2s;display:inline-block;}
+.btn-ghost:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-2px);}
+.hero-stats{display:flex;gap:40px;}
+.stat-num{font-family:var(--display);font-size:32px;color:var(--white);line-height:1;}
+.stat-label{font-family:var(--cond);font-size:9px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:rgba(240,238,234,.3);margin-top:4px;}
+.hero-right{position:relative;z-index:2;height:100vh;display:flex;align-items:center;justify-content:center;}
+.paddle-showcase{position:relative;width:100%;height:100%;display:flex;align-items:center;justify-content:center;}
+.paddle-glow{position:absolute;width:500px;height:500px;background:radial-gradient(circle,rgba(200,150,12,.08),transparent 70%);border-radius:50%;animation:glowBreath 5s ease-in-out infinite;}
+@keyframes glowBreath{0%,100%{transform:scale(1);opacity:.5;}50%{transform:scale(1.15);opacity:1;}}
+.hero-paddle{position:absolute;width:58%;max-width:380px;object-fit:contain;filter:drop-shadow(0 40px 80px rgba(200,150,12,.12)) drop-shadow(0 0 80px rgba(0,0,0,.9));animation:floatPaddle 7s ease-in-out infinite;opacity:0;transition:opacity .8s ease;z-index:2;}
+.hero-paddle.active{opacity:1;}
+@keyframes floatPaddle{0%,100%{transform:translateY(0) rotate(-2deg);}50%{transform:translateY(-18px) rotate(1deg);}}
+.paddle-dots{position:absolute;bottom:80px;left:50%;transform:translateX(-50%);display:flex;gap:10px;z-index:3;}
+.pdot{width:6px;height:6px;border-radius:50%;background:rgba(200,150,12,.25);cursor:pointer;transition:background .3s,transform .3s;}
+.pdot.active{background:var(--gold);transform:scale(1.4);}
+.scroll-hint{position:absolute;bottom:32px;left:80px;display:flex;align-items:center;gap:12px;opacity:0;animation:fadeIn 1s 1s forwards;}
+.scroll-line{width:1px;height:52px;background:linear-gradient(to bottom,var(--gold),transparent);animation:scrollPulse 2.5s infinite;}
+@keyframes scrollPulse{0%,100%{opacity:.3;}50%{opacity:1;}}
+.scroll-text{font-family:var(--cond);font-size:9px;letter-spacing:.25em;text-transform:uppercase;color:rgba(240,238,234,.28);writing-mode:vertical-rl;}
 
-/* WHY */
-.why-section { padding: 0 80px 110px; }
-.why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
-.why-feature { background: var(--mid); padding: 52px 48px; position: relative; overflow: hidden; transition: background 0.3s; }
-.why-feature:hover { background: #161616; }
-.why-feature::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--green-accent); transform: scaleX(0); transform-origin: left; transition: transform 0.5s cubic-bezier(0.16,1,0.3,1); }
-.why-feature:hover::before { transform: scaleX(1); }
-.feature-icon { font-size: 30px; margin-bottom: 20px; display: block; }
-.feature-num { font-family: var(--display); font-size: 80px; color: rgba(61,220,132,0.05); position: absolute; top: 16px; right: 28px; line-height: 1; pointer-events: none; }
-.feature-title { font-family: var(--display); font-size: 26px; letter-spacing: 0.03em; margin-bottom: 14px; line-height: 1.1; }
-.feature-body { font-size: 13px; line-height: 1.8; color: rgba(245,245,240,0.46); font-weight: 300; max-width: 360px; }
+.marquee-wrap{overflow:hidden;border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:14px 0;background:linear-gradient(90deg,var(--deep),#080820,var(--deep));}
+.marquee-track{display:flex;animation:marquee 28s linear infinite;width:max-content;}
+.marquee-item{font-family:var(--display);font-size:13px;letter-spacing:.2em;text-transform:uppercase;padding:0 32px;white-space:nowrap;display:flex;align-items:center;gap:14px;color:rgba(240,238,234,.6);}
+.marquee-item span{color:var(--gold);}
+@keyframes marquee{from{transform:translateX(0);}to{transform:translateX(-50%);}}
 
-/* TIERS */
-.tiers-section { padding: 110px 80px; background: var(--mid); }
-.tiers-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2px; margin-top: 64px; }
-.tier-card { background: var(--black); padding: 44px 36px 48px; position: relative; overflow: hidden; transition: transform 0.3s; }
-.tier-card.featured { background: var(--green); transform: translateY(-10px); }
-.tier-card:hover { transform: translateY(-6px); }
-.tier-card.featured:hover { transform: translateY(-16px); }
-.tier-popular { position: absolute; top: 0; left: 0; right: 0; background: var(--green-accent); color: var(--black); font-family: var(--cond); font-size: 10px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; text-align: center; padding: 8px; }
-.tier-name { font-family: var(--display); font-size: 30px; letter-spacing: 0.04em; margin-bottom: 6px; margin-top: 10px; }
-.tier-price { font-family: var(--display); font-size: 60px; line-height: 1; color: var(--green-accent); }
-.tier-retail { font-family: var(--cond); font-size: 11px; color: rgba(245,245,240,0.38); letter-spacing: 0.1em; margin: 4px 0 28px; }
-.tier-retail s { text-decoration-color: rgba(245,245,240,0.25); }
-.tier-items { list-style: none; margin-bottom: 36px; display: flex; flex-direction: column; gap: 11px; }
-.tier-items li { font-size: 13px; color: rgba(245,245,240,0.68); display: flex; align-items: flex-start; gap: 10px; line-height: 1.4; font-weight: 300; }
-.tier-items li::before { content: '✓'; color: var(--green-accent); font-size: 11px; flex-shrink: 0; margin-top: 1px; font-weight: 700; }
-.tier-btn { display: block; text-align: center; font-family: var(--cond); font-size: 12px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; padding: 15px; text-decoration: none; transition: all 0.2s; cursor: pointer; border: none; width: 100%; }
-.tier-btn-primary { background: var(--green-accent); color: var(--black); }
-.tier-btn-primary:hover { background: #56f49e; }
-.tier-btn-ghost { border: 1px solid rgba(245,245,240,0.18); color: rgba(245,245,240,0.65); background: transparent; }
-.tier-btn-ghost:hover { border-color: rgba(245,245,240,0.45); color: var(--white); }
+.collection-section{padding:120px 80px;}
+.section-header{margin-bottom:72px;}
+.section-pre{font-family:var(--cond);font-size:10px;font-weight:600;letter-spacing:.35em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;display:flex;align-items:center;gap:12px;}
+.section-pre::before{content:'';display:inline-block;width:28px;height:1px;background:var(--gold);}
+.section-title{font-family:var(--display);font-size:clamp(48px,6vw,88px);line-height:.92;letter-spacing:.02em;}
+.section-title .g{color:var(--gold);}
+.section-sub{font-size:14px;line-height:1.8;color:rgba(240,238,234,.42);max-width:520px;margin-top:20px;font-weight:300;}
+.collection-banner{width:100%;margin-bottom:24px;overflow:hidden;position:relative;}
+.collection-banner img{width:100%;height:auto;display:block;filter:drop-shadow(0 20px 60px rgba(0,0,0,.8));}
+.collection-banner-label{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(0,0,0,.9),transparent);padding:32px 40px 24px;font-family:var(--serif);font-size:18px;letter-spacing:.15em;color:var(--gold);}
+.paddle-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:3px;margin-top:8px;}
+.paddle-tile{background:var(--mid);position:relative;overflow:hidden;cursor:pointer;transition:transform .4s cubic-bezier(.16,1,.3,1);}
+.paddle-tile:hover{transform:translateY(-10px);z-index:2;}
+.paddle-tile:first-child{grid-column:span 2;}
+.paddle-tile:nth-child(5){grid-column:span 2;}
+.tile-img-wrap{aspect-ratio:2/3;overflow:hidden;background:#06060f;display:flex;align-items:center;justify-content:center;position:relative;}
+.tile-img-wrap::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(0,0,0,.75) 100%);}
+.tile-img{width:100%;height:100%;object-fit:cover;transition:transform .7s cubic-bezier(.16,1,.3,1);}
+.paddle-tile:hover .tile-img{transform:scale(1.06);}
+.tile-info{padding:20px 20px 24px;}
+.tile-series{font-family:var(--cond);font-size:9px;font-weight:700;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:6px;}
+.tile-name{font-family:var(--display);font-size:22px;letter-spacing:.04em;line-height:1.05;margin-bottom:3px;}
+.tile-est{font-family:var(--cond);font-size:10px;color:rgba(240,238,234,.35);letter-spacing:.15em;}
+.tile-badge{position:absolute;top:14px;left:14px;background:var(--gold);color:#000;font-family:var(--cond);font-size:9px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;padding:5px 10px;z-index:3;}
+.tile-badge.rare{background:linear-gradient(135deg,#8B0000,#cc0000);color:white;}
+.tile-badge.collector{background:linear-gradient(135deg,#4a0080,#8800cc);color:white;}
+.tile-badge.limited{background:linear-gradient(135deg,#1a3a1a,#2ecc71);color:white;}
+.tile-hover{position:absolute;inset:0;background:rgba(0,0,0,.75);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .3s;z-index:4;}
+.paddle-tile:hover .tile-hover{opacity:1;}
+.tile-hover-btn{font-family:var(--cond);font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;background:var(--gold);color:#000;padding:14px 28px;cursor:pointer;border:none;transition:background .2s;}
+.tile-hover-btn:hover{background:var(--gold-light);}
 
-/* CHARACTERS */
-.chars-section { padding: 110px 80px; }
-.chars-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 2px; margin-top: 64px; }
-.char-card { background: var(--mid); padding: 44px 32px; text-align: center; transition: background 0.3s; position: relative; overflow: hidden; }
-.char-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--green-accent); transform: scaleX(0); transform-origin: left; transition: transform 0.4s cubic-bezier(0.16,1,0.3,1); }
-.char-card:hover { background: #161616; }
-.char-card:hover::before { transform: scaleX(1); }
-.char-emoji { font-size: 44px; margin-bottom: 18px; display: block; }
-.char-name { font-family: var(--display); font-size: 20px; letter-spacing: 0.04em; margin-bottom: 10px; }
-.char-desc { font-size: 12px; line-height: 1.7; color: rgba(245,245,240,0.42); font-weight: 300; }
-.char-label { display: inline-block; margin-top: 18px; font-family: var(--cond); font-size: 9px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--green-accent); border: 1px solid rgba(61,220,132,0.3); padding: 5px 12px; }
+.why-section{padding:0 80px 120px;}
+.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:3px;}
+.why-card{background:var(--mid);padding:56px 52px;position:relative;overflow:hidden;transition:background .4s;}
+.why-card:hover{background:var(--surface);}
+.why-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),var(--gold-light));transform:scaleX(0);transform-origin:left;transition:transform .5s cubic-bezier(.16,1,.3,1);}
+.why-card:hover::before{transform:scaleX(1);}
+.why-bg-num{font-family:var(--display);font-size:120px;color:rgba(200,150,12,.04);position:absolute;top:10px;right:24px;line-height:1;pointer-events:none;}
+.why-icon{font-size:36px;margin-bottom:24px;display:block;}
+.why-title{font-family:var(--display);font-size:30px;letter-spacing:.03em;margin-bottom:16px;line-height:1.05;}
+.why-body{font-size:13px;line-height:1.85;color:rgba(240,238,234,.44);font-weight:300;max-width:380px;}
 
-/* EMAIL MODAL */
-.email-modal-overlay { position: fixed; inset: 0; z-index: 7000; background: rgba(0,0,0,0.85); backdrop-filter: blur(8px); display: flex; align-items: center; justify-content: center; opacity: 0; visibility: hidden; transition: opacity 0.3s, visibility 0.3s; }
-.email-modal-overlay.open { opacity: 1; visibility: visible; }
-.email-modal { background: #0e0e0e; border: 1px solid var(--border); max-width: 520px; width: 90%; padding: 56px 48px; position: relative; transform: translateY(20px); transition: transform 0.3s cubic-bezier(0.16,1,0.3,1); }
-.email-modal-overlay.open .email-modal { transform: translateY(0); }
-.modal-close { position: absolute; top: 20px; right: 20px; background: none; border: none; color: rgba(245,245,240,0.4); font-size: 20px; cursor: pointer; transition: color 0.2s; padding: 4px 8px; }
-.modal-close:hover { color: var(--white); }
-.modal-badge { display: inline-block; border: 1px solid var(--green-accent); color: var(--green-accent); font-family: var(--cond); font-size: 9px; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; padding: 6px 14px; margin-bottom: 20px; }
-.modal-title { font-family: var(--display); font-size: 48px; line-height: 0.95; margin-bottom: 12px; }
-.modal-sub { font-size: 13px; line-height: 1.75; color: rgba(245,245,240,0.48); font-weight: 300; margin-bottom: 32px; }
-.modal-input-wrap { display: flex; gap: 0; margin-bottom: 12px; }
-.modal-input { flex: 1; background: rgba(255,255,255,0.05); border: 1px solid rgba(245,245,240,0.15); border-right: none; color: var(--white); font-family: var(--cond); font-size: 13px; letter-spacing: 0.05em; padding: 14px 18px; outline: none; transition: border-color 0.2s; }
-.modal-input::placeholder { color: rgba(245,245,240,0.25); }
-.modal-input:focus { border-color: var(--green-accent); }
-.modal-submit { font-family: var(--cond); font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; background: var(--green-accent); color: var(--black); border: none; padding: 14px 22px; cursor: pointer; transition: background 0.2s; white-space: nowrap; }
-.modal-submit:hover { background: #56f49e; }
-.modal-note { font-size: 11px; color: rgba(245,245,240,0.28); font-style: italic; }
-.modal-success { display: none; text-align: center; padding: 20px 0; }
-.modal-success-icon { font-size: 48px; margin-bottom: 16px; display: block; }
-.modal-success-text { font-family: var(--display); font-size: 32px; color: var(--green-accent); margin-bottom: 8px; }
-.modal-success-sub { font-size: 13px; color: rgba(245,245,240,0.45); font-weight: 300; }
+.tiers-section{padding:120px 80px;background:linear-gradient(180deg,var(--void) 0%,#080818 50%,var(--void) 100%);position:relative;overflow:hidden;}
+.tiers-section::before{content:'THE CRYPTID COLLECTORS SERIES';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:var(--display);font-size:120px;color:rgba(200,150,12,.02);white-space:nowrap;pointer-events:none;letter-spacing:-.02em;}
+.tiers-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;margin-top:72px;}
+.tier-card{background:var(--mid);padding:48px 40px 52px;position:relative;overflow:hidden;transition:transform .3s;}
+.tier-card.featured{background:linear-gradient(180deg,#1a1a00,#0a0a00);border:1px solid rgba(200,150,12,.3);transform:translateY(-12px);}
+.tier-card:hover{transform:translateY(-6px);}
+.tier-card.featured:hover{transform:translateY(-18px);}
+.tier-top-bar{position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--gold-light),var(--gold));}
+.tier-popular{position:absolute;top:0;left:0;right:0;background:linear-gradient(90deg,var(--gold),var(--gold-light));color:#000;font-family:var(--cond);font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;text-align:center;padding:9px;}
+.tier-name{font-family:var(--display);font-size:32px;letter-spacing:.05em;margin-bottom:4px;margin-top:8px;}
+.tier-price{font-family:var(--display);font-size:64px;line-height:1;color:var(--gold);}
+.tier-retail{font-family:var(--cond);font-size:11px;color:rgba(240,238,234,.35);letter-spacing:.1em;margin:4px 0 28px;}
+.tier-items{list-style:none;margin-bottom:36px;display:flex;flex-direction:column;gap:12px;}
+.tier-items li{font-size:13px;color:rgba(240,238,234,.65);display:flex;align-items:flex-start;gap:10px;line-height:1.45;font-weight:300;}
+.tier-items li::before{content:'✦';color:var(--gold);font-size:9px;flex-shrink:0;margin-top:3px;}
+.tier-btn{display:block;text-align:center;font-family:var(--cond);font-size:12px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;padding:16px;text-decoration:none;transition:all .2s;cursor:pointer;border:none;width:100%;}
+.tier-btn-gold{background:linear-gradient(135deg,var(--gold),var(--gold-light));color:#000;}
+.tier-btn-gold:hover{transform:translateY(-1px);box-shadow:0 8px 24px rgba(200,150,12,.3);}
+.tier-btn-outline{border:1px solid rgba(200,150,12,.25);color:rgba(240,238,234,.6);background:transparent;}
+.tier-btn-outline:hover{border-color:var(--gold);color:var(--gold);}
 
-/* EMAIL BAND */
-.email-section { background: var(--green); padding: 90px 80px; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: space-between; gap: 60px; }
-.email-section::before { content: 'SQUACH'; position: absolute; right: -30px; top: 50%; transform: translateY(-50%); font-family: var(--display); font-size: 260px; color: rgba(0,0,0,0.12); white-space: nowrap; pointer-events: none; letter-spacing: -0.05em; }
-.email-left { position: relative; }
-.email-eyebrow { font-family: var(--cond); font-size: 10px; font-weight: 600; letter-spacing: 0.3em; text-transform: uppercase; color: var(--green-accent); margin-bottom: 14px; display: flex; align-items: center; gap: 10px; }
-.email-eyebrow::before { content: ''; display: inline-block; width: 20px; height: 1px; background: var(--green-accent); }
-.email-title { font-family: var(--display); font-size: clamp(44px,5vw,72px); line-height: 0.95; margin-bottom: 16px; }
-.email-sub { font-size: 14px; line-height: 1.7; color: rgba(245,245,240,0.6); font-weight: 300; max-width: 380px; }
-.email-right { position: relative; flex-shrink: 0; }
-.email-perks { display: flex; flex-direction: column; gap: 12px; margin-bottom: 32px; }
-.perk { display: flex; align-items: center; gap: 12px; font-size: 13px; color: rgba(245,245,240,0.75); font-weight: 300; }
-.perk::before { content: '→'; color: var(--green-accent); flex-shrink: 0; }
+.chars-section{padding:120px 80px;}
+.chars-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:3px;margin-top:72px;}
+.char-card{background:var(--mid);padding:48px 32px;text-align:center;position:relative;overflow:hidden;transition:background .3s;}
+.char-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),var(--gold-light));transform:scaleX(0);transform-origin:left;transition:transform .4s cubic-bezier(.16,1,.3,1);}
+.char-card:hover{background:var(--surface);}
+.char-card:hover::before{transform:scaleX(1);}
+.char-emoji{font-size:48px;margin-bottom:20px;display:block;}
+.char-name{font-family:var(--display);font-size:22px;letter-spacing:.04em;margin-bottom:10px;}
+.char-desc{font-size:12px;line-height:1.75;color:rgba(240,238,234,.4);font-weight:300;}
+.char-tag{display:inline-block;margin-top:20px;font-family:var(--cond);font-size:9px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(200,150,12,.3);padding:5px 14px;}
 
-/* FOOTER */
-footer { background: #040404; border-top: 1px solid var(--border); padding: 60px 80px 36px; }
-.footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 56px; padding-bottom: 52px; border-bottom: 1px solid var(--border); margin-bottom: 36px; }
-.footer-logo-link { font-family: var(--display); font-size: 22px; letter-spacing: 0.08em; color: var(--white); text-decoration: none; display: block; margin-bottom: 14px; }
-.footer-logo-link span { color: var(--green-accent); }
-.footer-desc { font-size: 12px; line-height: 1.75; color: rgba(245,245,240,0.3); font-weight: 300; max-width: 240px; }
-.footer-col-title { font-family: var(--cond); font-size: 10px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--white); margin-bottom: 18px; }
-.footer-links { list-style: none; display: flex; flex-direction: column; gap: 9px; }
-.footer-links a { font-size: 12px; color: rgba(245,245,240,0.38); text-decoration: none; font-weight: 300; transition: color 0.2s; }
-.footer-links a:hover { color: var(--white); }
-.footer-bottom { display: flex; justify-content: space-between; align-items: center; }
-.footer-copy { font-size: 11px; color: rgba(245,245,240,0.22); letter-spacing: 0.04em; }
-.footer-badges { display: flex; gap: 12px; }
-.badge-pill { font-family: var(--cond); font-size: 9px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; border: 1px solid rgba(245,245,240,0.12); color: rgba(245,245,240,0.25); padding: 5px 11px; }
+.modal-overlay{position:fixed;inset:0;z-index:7000;background:rgba(0,0,0,.88);backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:opacity .3s,visibility .3s;}
+.modal-overlay.open{opacity:1;visibility:visible;}
+.modal-box{background:var(--deep);border:1px solid var(--border);max-width:520px;width:92%;padding:56px 48px;position:relative;transform:translateY(24px);transition:transform .35s cubic-bezier(.16,1,.3,1);}
+.modal-overlay.open .modal-box{transform:translateY(0);}
+.modal-top-bar{position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),var(--gold-light));}
+.modal-close{position:absolute;top:18px;right:18px;background:none;border:none;color:rgba(240,238,234,.35);font-size:18px;cursor:pointer;transition:color .2s;padding:6px 10px;font-family:var(--cond);}
+.modal-close:hover{color:var(--gold);}
+.modal-badge{display:inline-block;border:1px solid var(--gold);color:var(--gold);font-family:var(--cond);font-size:9px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;padding:6px 16px;margin-bottom:20px;}
+.modal-title{font-family:var(--display);font-size:52px;line-height:.92;margin-bottom:12px;}
+.modal-sub{font-size:13px;line-height:1.8;color:rgba(240,238,234,.45);font-weight:300;margin-bottom:32px;}
+.modal-input-row{display:flex;margin-bottom:12px;}
+.modal-input{flex:1;background:rgba(255,255,255,.04);border:1px solid rgba(200,150,12,.2);border-right:none;color:var(--white);font-family:var(--cond);font-size:13px;letter-spacing:.05em;padding:15px 20px;outline:none;transition:border-color .2s;}
+.modal-input::placeholder{color:rgba(240,238,234,.22);}
+.modal-input:focus{border-color:var(--gold);}
+.modal-submit{font-family:var(--cond);font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;background:linear-gradient(135deg,var(--gold),var(--gold-light));color:#000;border:none;padding:15px 24px;cursor:pointer;white-space:nowrap;}
+.modal-submit:hover{opacity:.9;}
+.modal-note{font-size:11px;color:rgba(240,238,234,.25);font-style:italic;}
+.modal-success{display:none;text-align:center;padding:24px 0;}
+.modal-success-icon{font-size:56px;margin-bottom:16px;display:block;}
+.modal-success-title{font-family:var(--display);font-size:36px;color:var(--gold);margin-bottom:8px;}
+.modal-success-sub{font-size:13px;color:rgba(240,238,234,.42);font-weight:300;}
 
-/* REVEAL */
-.reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.9s cubic-bezier(0.16,1,0.3,1), transform 0.9s cubic-bezier(0.16,1,0.3,1); }
-.reveal.visible { opacity: 1; transform: translateY(0); }
-.reveal-delay-1 { transition-delay: 0.1s; }
-.reveal-delay-2 { transition-delay: 0.2s; }
-.reveal-delay-3 { transition-delay: 0.3s; }
-.reveal-delay-4 { transition-delay: 0.4s; }
+.email-band{background:linear-gradient(135deg,#0a0800,#1a1000,#0a0800);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:96px 80px;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:space-between;gap:60px;}
+.email-band::before{content:'SQUACHACERS';position:absolute;right:-40px;top:50%;transform:translateY(-50%);font-family:var(--display);font-size:280px;color:rgba(200,150,12,.025);white-space:nowrap;pointer-events:none;letter-spacing:-.05em;}
+.eb-left{position:relative;}
+.eb-pre{font-family:var(--cond);font-size:10px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;display:flex;align-items:center;gap:10px;}
+.eb-pre::before{content:'';display:inline-block;width:20px;height:1px;background:var(--gold);}
+.eb-title{font-family:var(--display);font-size:clamp(44px,5vw,76px);line-height:.93;margin-bottom:16px;}
+.eb-sub{font-size:14px;line-height:1.75;color:rgba(240,238,234,.5);font-weight:300;max-width:360px;}
+.eb-right{position:relative;flex-shrink:0;}
+.eb-perks{display:flex;flex-direction:column;gap:13px;margin-bottom:32px;}
+.perk{display:flex;align-items:center;gap:12px;font-size:13px;color:rgba(240,238,234,.7);font-weight:300;}
+.perk::before{content:'✦';color:var(--gold);font-size:9px;flex-shrink:0;}
 
-@keyframes fadeUp { from { opacity:0; transform:translateY(16px); } to { opacity:1; transform:translateY(0); } }
-@keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+footer{background:#01010a;border-top:1px solid var(--border);padding:64px 80px 40px;}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:60px;padding-bottom:56px;border-bottom:1px solid var(--border);margin-bottom:36px;}
+.footer-logo{font-family:var(--display);font-size:24px;letter-spacing:.1em;color:var(--white);text-decoration:none;display:block;margin-bottom:14px;}
+.footer-logo span{color:var(--gold);}
+.footer-desc{font-size:12px;line-height:1.8;color:rgba(240,238,234,.28);font-weight:300;max-width:240px;}
+.footer-col-title{font-family:var(--cond);font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:18px;}
+.footer-links{list-style:none;display:flex;flex-direction:column;gap:10px;}
+.footer-links a{font-size:12px;color:rgba(240,238,234,.35);text-decoration:none;font-weight:300;transition:color .2s;}
+.footer-links a:hover{color:var(--gold);}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;}
+.footer-copy{font-size:11px;color:rgba(240,238,234,.2);letter-spacing:.04em;}
+.footer-badges{display:flex;gap:12px;}
+.fbadge{font-family:var(--cond);font-size:9px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;border:1px solid rgba(200,150,12,.15);color:rgba(200,150,12,.3);padding:5px 12px;}
 
-@media (max-width: 900px) {
-  nav { padding: 0 20px; }
-  .nav-links { display: none; }
-  .banner { padding: 8px 20px; flex-direction: column; gap: 6px; }
-  .hero { grid-template-columns: 1fr; padding-top: 150px; }
-  .hero-left { padding: 36px 24px; }
-  .hero-right { height: 55vw; min-height: 280px; }
-  .paddles-section, .why-section, .tiers-section, .chars-section { padding: 72px 24px; }
-  .email-section { padding: 72px 24px; flex-direction: column; }
-  .paddles-grid { grid-template-columns: repeat(2,1fr); }
-  .paddle-card:first-child { grid-column: span 2; }
-  .why-grid, .tiers-grid { grid-template-columns: 1fr; }
-  .chars-grid { grid-template-columns: repeat(2,1fr); }
-  .footer-top { grid-template-columns: 1fr 1fr; gap: 36px; }
-  footer { padding: 40px 24px; }
-  .footer-bottom { flex-direction: column; gap: 14px; text-align: center; }
-  .section-header { flex-direction: column; align-items: flex-start; gap: 14px; }
-  .tiers-grid { gap: 14px; }
-  .tier-card.featured { transform: translateY(0); }
-  .email-modal { padding: 40px 28px; }
-  .modal-title { font-size: 36px; }
+.reveal{opacity:0;transform:translateY(32px);transition:opacity .9s cubic-bezier(.16,1,.3,1),transform .9s cubic-bezier(.16,1,.3,1);}
+.reveal.visible{opacity:1;transform:translateY(0);}
+.rd1{transition-delay:.1s;}.rd2{transition-delay:.2s;}.rd3{transition-delay:.3s;}.rd4{transition-delay:.4s;}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
+@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+
+@media(max-width:900px){
+  .cursor,.cursor-ring{display:none;}
+  body{cursor:auto;}
+  nav{padding:0 20px;}
+  .nav-links{display:none;}
+  .banner{padding:8px 20px;flex-direction:column;gap:6px;}
+  .hero{grid-template-columns:1fr;padding-top:140px;}
+  .hero-left{padding:32px 24px;}
+  .hero-right{height:60vw;min-height:320px;}
+  .scroll-hint{display:none;}
+  .collection-section,.why-section,.tiers-section,.chars-section{padding:72px 24px;}
+  .email-band{padding:72px 24px;flex-direction:column;}
+  .paddle-grid{grid-template-columns:repeat(2,1fr);}
+  .paddle-tile:first-child,.paddle-tile:nth-child(5){grid-column:span 2;}
+  .why-grid,.tiers-grid{grid-template-columns:1fr;}
+  .chars-grid{grid-template-columns:repeat(2,1fr);}
+  .footer-grid{grid-template-columns:1fr 1fr;gap:36px;}
+  footer{padding:40px 24px;}
+  .footer-bottom{flex-direction:column;gap:14px;text-align:center;}
+  .tiers-grid{gap:16px;}
+  .tier-card.featured{transform:translateY(0);}
+  .modal-box{padding:40px 28px;}
+  .modal-title{font-size:38px;}
 }
 </style>
 </head>
 <body class="no-scroll">
 
-<!-- INTRO -->
+<div class="cursor" id="cur"></div>
+<div class="cursor-ring" id="curR"></div>
+<div class="orb orb1"></div>
+<div class="orb orb2"></div>
+<div class="orb orb3"></div>
+
 <div id="intro">
-  <div class="intro-bg"></div>
+  <div class="intro-cosmos" id="introStars"></div>
   <div class="intro-grid"></div>
   <div class="intro-scan"></div>
   <div class="intro-brackets">
-    <div class="bracket bracket-tl"></div>
-    <div class="bracket bracket-tr"></div>
-    <div class="bracket bracket-bl"></div>
-    <div class="bracket bracket-br"></div>
+    <div class="bk bk-tl"></div><div class="bk bk-tr"></div>
+    <div class="bk bk-bl"></div><div class="bk bk-br"></div>
   </div>
-  <div class="intro-stars" id="introStars"></div>
-  <div class="intro-content">
-    <div class="intro-eyebrow">Kickstarter · June 3, 2026</div>
-    <div class="intro-logo">
-      <span class="line1">Squach</span>
-      <span class="line2">Paddles™</span>
-    </div>
-    <div class="intro-tagline">Pickleball. But Make It Cosmic.</div>
+  <div class="intro-center">
+    <div class="intro-pre">The Cryptid Collectors' Series</div>
+    <div class="intro-logo"><span class="l1">Squach</span><span class="l2">Acers™</span></div>
+    <div class="intro-tag">Pickleball. But Make It Cosmic.</div>
+    <div class="intro-series">EST. 2026 · Quincy, Florida</div>
     <div class="intro-bar-wrap"><div class="intro-bar"></div></div>
-    <div class="intro-enter" id="introEnter" onclick="enterSite()">— Enter —</div>
+    <div class="intro-enter" onclick="enterSite()">— Enter the Universe —</div>
   </div>
 </div>
 
-<!-- EMAIL MODAL -->
-<div class="email-modal-overlay" id="emailModal">
-  <div class="email-modal">
+<div class="modal-overlay" id="modal">
+  <div class="modal-box">
+    <div class="modal-top-bar"></div>
     <button class="modal-close" onclick="closeModal()">✕</button>
     <div id="modalForm">
       <div class="modal-badge">🛸 Founding Squad</div>
       <div class="modal-title">Join the<br>Waitlist.</div>
-      <p class="modal-sub">Get 24-hour early access + founding discount code on June 3. One email. No spam. Ever.</p>
-      <div class="modal-input-wrap">
+      <p class="modal-sub">Get 24-hour early access + founding discount on June 3. One email. No spam. Ever.</p>
+      <div class="modal-input-row">
         <input type="email" class="modal-input" placeholder="your@email.com" id="modalEmail">
-        <button class="modal-submit" onclick="submitModal()">Notify Me 🛸</button>
+        <button class="modal-submit" onclick="submitModal()">Notify Me ✦</button>
       </div>
-      <div class="modal-note">No spam. Just the launch notification + founding discount.</div>
+      <div class="modal-note">No spam. Just the launch + founding discount code.</div>
     </div>
     <div class="modal-success" id="modalSuccess">
       <span class="modal-success-icon">🛸</span>
-      <div class="modal-success-text">You're In.</div>
+      <div class="modal-success-title">You're In.</div>
       <p class="modal-success-sub">See you June 3, Founding Squad member.</p>
     </div>
   </div>
 </div>
 
-<!-- MAIN -->
 <div id="main">
 
 <nav>
   <a href="https://squachacers.com" class="nav-logo">Squach<span>Acers™</span></a>
   <ul class="nav-links">
-    <li><a href="#paddles">Paddles</a></li>
-    <li><a href="#why">Tech</a></li>
+    <li><a href="#collection">Collection</a></li>
+    <li><a href="#why">Craft</a></li>
     <li><a href="#tiers">Back It</a></li>
     <li><a href="#characters">Universe</a></li>
     <li><a href="https://squachacers.com">Patch Store</a></li>
@@ -328,124 +351,165 @@ footer { background: #040404; border-top: 1px solid var(--border); padding: 60px
 </nav>
 
 <div class="banner">
-  <span class="banner-text">🛸 Kickstarter Launches June 3, 2026 —</span>
+  <span class="banner-text">✦ Kickstarter Launches June 3, 2026 ✦</span>
   <div class="countdown">
-    <div class="cd-unit"><div class="cd-num" id="cd-days">--</div><div class="cd-label">Days</div></div>
+    <div class="cd-unit"><div class="cd-num" id="cdD">--</div><div class="cd-label">Days</div></div>
     <div class="cd-sep">:</div>
-    <div class="cd-unit"><div class="cd-num" id="cd-hours">--</div><div class="cd-label">Hrs</div></div>
+    <div class="cd-unit"><div class="cd-num" id="cdH">--</div><div class="cd-label">Hrs</div></div>
     <div class="cd-sep">:</div>
-    <div class="cd-unit"><div class="cd-num" id="cd-mins">--</div><div class="cd-label">Min</div></div>
+    <div class="cd-unit"><div class="cd-num" id="cdM">--</div><div class="cd-label">Min</div></div>
     <div class="cd-sep">:</div>
-    <div class="cd-unit"><div class="cd-num" id="cd-secs">--</div><div class="cd-label">Sec</div></div>
+    <div class="cd-unit"><div class="cd-num" id="cdS">--</div><div class="cd-label">Sec</div></div>
   </div>
 </div>
 
 <section class="hero">
-  <div class="hero-bg"></div>
-  <div class="stars" id="heroStars"></div>
+  <div class="hero-void"></div>
+  <div class="hero-stars" id="heroStars"></div>
+  <div class="shoot" style="top:20%;--sd:9s;--sdl:0s;"></div>
+  <div class="shoot" style="top:50%;--sd:12s;--sdl:3s;"></div>
+  <div class="shoot" style="top:75%;--sd:7s;--sdl:6s;"></div>
   <div class="hero-left">
-    <div class="hero-badge">🛸 Kickstarter · June 3, 2026</div>
-    <h1 class="hero-title">Squach<br><span class="accent">Paddles</span><br><span class="italic-line">But Make It Cosmic.</span></h1>
-    <p class="hero-sub">The most original pickleball paddles ever made. Galaxy colorways. Original Squach characters. Carbon fiber face. Built for players who refuse to be boring.</p>
+    <div class="hero-eyebrow">🛸 Kickstarter · June 3, 2026</div>
+    <h1 class="hero-title">The <span class="g">Cryptid</span><br>Collectors'<br>Series<br><span class="serif-line">No two courts. No two legends.</span></h1>
+    <div class="hero-divider"></div>
+    <p class="hero-sub">Hand-crafted wood-carved aesthetic on tournament-grade carbon fiber. Every paddle tells a legend. Kickstarter launches June 3 — founding backers get the best price these will ever be.</p>
     <div class="hero-actions">
-      <a href="#" class="btn-primary" onclick="openModal(event)">🛸 Join the Founding Squad</a>
-      <a href="#paddles" class="btn-ghost">See All Paddles →</a>
+      <a href="#" class="btn-gold" onclick="openModal(event)">✦ Join the Founding Squad</a>
+      <a href="#collection" class="btn-ghost">See the Collection →</a>
     </div>
-    <div class="hero-meta">
-      <div class="meta-item"><div class="meta-num">5</div><div class="meta-label">Colorways</div></div>
-      <div class="meta-item"><div class="meta-num">16mm</div><div class="meta-label">Core</div></div>
-      <div class="meta-item"><div class="meta-num">USAPA</div><div class="meta-label">Approved</div></div>
+    <div class="hero-stats">
+      <div><div class="stat-num">12+</div><div class="stat-label">Cryptids</div></div>
+      <div><div class="stat-num">16mm</div><div class="stat-label">Carbon Core</div></div>
+      <div><div class="stat-num">USAPA</div><div class="stat-label">Approved</div></div>
     </div>
   </div>
   <div class="hero-right">
-    <div class="hero-paddle-showcase">
-      <div class="hero-glow"></div>
-      <img src="paddle-1-1.jpg" alt="Squach Paddle" class="hero-paddle-img">
+    <div class="paddle-showcase">
+      <div class="paddle-glow"></div>
+      <img src="hero-paddle.jpg" class="hero-paddle active" id="hp0" alt="Squachacers Paddle">
+      <img src="hero-paddle-alien.jpg" class="hero-paddle" id="hp1" alt="Alien Paddle">
+      <img src="hero-paddle-teal.jpg" class="hero-paddle" id="hp2" alt="Teal Paddle">
+      <img src="hero-paddle-purple.jpg" class="hero-paddle" id="hp3" alt="Purple Paddle">
+      <img src="hero-paddle-constellation.jpg" class="hero-paddle" id="hp4" alt="Constellation Paddle">
+      <div class="paddle-dots">
+        <div class="pdot active" onclick="setPaddle(0)"></div>
+        <div class="pdot" onclick="setPaddle(1)"></div>
+        <div class="pdot" onclick="setPaddle(2)"></div>
+        <div class="pdot" onclick="setPaddle(3)"></div>
+        <div class="pdot" onclick="setPaddle(4)"></div>
+      </div>
     </div>
   </div>
+  <div class="scroll-hint"><div class="scroll-line"></div><span class="scroll-text">Scroll</span></div>
 </section>
 
 <div class="marquee-wrap">
   <div class="marquee-track">
     <div class="marquee-item">Carbon Fiber Face <span>✦</span></div>
-    <div class="marquee-item">Galaxy Sublimation <span>✦</span></div>
+    <div class="marquee-item">Wood Carved Aesthetic <span>✦</span></div>
     <div class="marquee-item">USAPA Approved <span>✦</span></div>
-    <div class="marquee-item">Patent Pending Tech <span>✦</span></div>
-    <div class="marquee-item">5 Colorways <span>✦</span></div>
+    <div class="marquee-item">Cryptid Collectors' Series <span>✦</span></div>
+    <div class="marquee-item">12+ Cryptid Designs <span>✦</span></div>
     <div class="marquee-item">16mm Honeycomb Core <span>✦</span></div>
-    <div class="marquee-item">Original Characters <span>✦</span></div>
+    <div class="marquee-item">UV Print Technology <span>✦</span></div>
     <div class="marquee-item">Founding Backer Pricing <span>✦</span></div>
+    <div class="marquee-item">EST. 2026 · Quincy FL <span>✦</span></div>
     <div class="marquee-item">Carbon Fiber Face <span>✦</span></div>
-    <div class="marquee-item">Galaxy Sublimation <span>✦</span></div>
+    <div class="marquee-item">Wood Carved Aesthetic <span>✦</span></div>
     <div class="marquee-item">USAPA Approved <span>✦</span></div>
-    <div class="marquee-item">Patent Pending Tech <span>✦</span></div>
-    <div class="marquee-item">5 Colorways <span>✦</span></div>
+    <div class="marquee-item">Cryptid Collectors' Series <span>✦</span></div>
+    <div class="marquee-item">12+ Cryptid Designs <span>✦</span></div>
     <div class="marquee-item">16mm Honeycomb Core <span>✦</span></div>
-    <div class="marquee-item">Original Characters <span>✦</span></div>
+    <div class="marquee-item">UV Print Technology <span>✦</span></div>
     <div class="marquee-item">Founding Backer Pricing <span>✦</span></div>
+    <div class="marquee-item">EST. 2026 · Quincy FL <span>✦</span></div>
   </div>
 </div>
 
-<section id="paddles" class="paddles-section">
+<section id="collection" class="collection-section">
   <div class="section-header">
-    <div>
-      <div class="section-eyebrow reveal">— The Collection</div>
-      <h2 class="section-title reveal">5 Founding<br>Colorways.</h2>
-    </div>
-    <a href="#" class="section-link reveal" onclick="openModal(event)">Back on Kickstarter →</a>
+    <div class="section-pre reveal">— The Collection</div>
+    <h2 class="section-title reveal">The <span class="g">Cryptid</span><br>Collectors'<br>Series.</h2>
+    <p class="section-sub reveal">Every legend. Every creature. Every myth. Carved in wood. Printed on carbon fiber. Built to dominate the court and the conversation.</p>
   </div>
-  <div class="paddles-grid">
-    <div class="paddle-card reveal">
-      <div class="paddle-badge">Flagship</div>
-      <div class="paddle-img-wrap"><img src="paddle-1-1.jpg" alt="Stealth Black" class="paddle-img"></div>
-      <div class="paddle-info"><div class="paddle-tag">Founding Colorway</div><div class="paddle-name">The Embossed</div><div class="paddle-sub">Stealth Black</div></div>
+  <div class="collection-banner reveal">
+    <img src="cryptid-series-row1.jpg" alt="Cryptid Collectors Series Row 1">
+    <div class="collection-banner-label">✦ The Cryptid Collectors' Series · Row 1 ✦</div>
+  </div>
+  <div class="paddle-grid">
+    <div class="paddle-tile reveal">
+      <div class="tile-badge">Flagship</div>
+      <div class="tile-hover"><button class="tile-hover-btn" onclick="openModal(event)">Back This Paddle</button></div>
+      <div class="tile-img-wrap"><img src="hero-paddle.jpg" class="tile-img" alt="Squachacers"></div>
+      <div class="tile-info"><div class="tile-series">Founding Cryptid</div><div class="tile-name">SquachAcers</div><div class="tile-est">EST. 2026</div></div>
     </div>
-    <div class="paddle-card reveal reveal-delay-1">
-      <div class="paddle-badge new">New</div>
-      <div class="paddle-img-wrap"><img src="paddle-2.jpg" alt="Carbon White" class="paddle-img"></div>
-      <div class="paddle-info"><div class="paddle-tag">Founding Colorway</div><div class="paddle-name">Grid Court</div><div class="paddle-sub">Carbon White</div></div>
+    <div class="paddle-tile reveal rd1">
+      <div class="tile-badge collector">Collector</div>
+      <div class="tile-hover"><button class="tile-hover-btn" onclick="openModal(event)">Back This Paddle</button></div>
+      <div class="tile-img-wrap"><img src="hero-paddle-alien.jpg" class="tile-img" alt="Alien"></div>
+      <div class="tile-info"><div class="tile-series">CE-5 Contact</div><div class="tile-name">Alien Forest</div><div class="tile-est">EST. 2026</div></div>
     </div>
-    <div class="paddle-card reveal reveal-delay-2">
-      <div class="paddle-badge limited">Limited</div>
-      <div class="paddle-img-wrap"><img src="paddle-3.jpg" alt="Stealth Split" class="paddle-img"></div>
-      <div class="paddle-info"><div class="paddle-tag">Limited Edition</div><div class="paddle-name">Stealth Split</div><div class="paddle-sub">Limited Edition</div></div>
+    <div class="paddle-tile reveal rd2">
+      <div class="tile-badge limited">Limited</div>
+      <div class="tile-hover"><button class="tile-hover-btn" onclick="openModal(event)">Back This Paddle</button></div>
+      <div class="tile-img-wrap"><img src="hero-paddle-kraken.jpg" class="tile-img" alt="Kraken"></div>
+      <div class="tile-info"><div class="tile-series">Deep Sea Series</div><div class="tile-name">Kraken Deep Dive</div><div class="tile-est">EST. 1872</div></div>
     </div>
-    <div class="paddle-card reveal reveal-delay-3">
-      <div class="paddle-img-wrap"><img src="paddle-4.jpg" alt="Forest Green" class="paddle-img"></div>
-      <div class="paddle-info"><div class="paddle-tag">Founding Colorway</div><div class="paddle-name">Forest Green</div><div class="paddle-sub">Flagship</div></div>
+    <div class="paddle-tile reveal rd3">
+      <div class="tile-badge rare">Rare</div>
+      <div class="tile-hover"><button class="tile-hover-btn" onclick="openModal(event)">Back This Paddle</button></div>
+      <div class="tile-img-wrap"><img src="hero-paddle-flatwoods.jpg" class="tile-img" alt="Flatwoods"></div>
+      <div class="tile-info"><div class="tile-series">Flatwoods Field Study</div><div class="tile-name">The Green Monster</div><div class="tile-est">EST. 1952</div></div>
     </div>
-    <div class="paddle-card reveal reveal-delay-4">
-      <div class="paddle-img-wrap"><img src="paddle-5.jpg" alt="Bronze Gorilla" class="paddle-img"></div>
-      <div class="paddle-info"><div class="paddle-tag">Collector</div><div class="paddle-name">Bronze Gorilla</div><div class="paddle-sub">Collector Series</div></div>
+    <div class="paddle-tile reveal">
+      <div class="tile-badge">Founding</div>
+      <div class="tile-hover"><button class="tile-hover-btn" onclick="openModal(event)">Back This Paddle</button></div>
+      <div class="tile-img-wrap"><img src="hero-paddle-lochness.jpg" class="tile-img" alt="Loch Ness"></div>
+      <div class="tile-info"><div class="tile-series">Scottish Highlands</div><div class="tile-name">Loch Ness Conservancy</div><div class="tile-est">EST. 1933</div></div>
+    </div>
+    <div class="paddle-tile reveal rd1">
+      <div class="tile-hover"><button class="tile-hover-btn" onclick="openModal(event)">Back This Paddle</button></div>
+      <div class="tile-img-wrap"><img src="hero-paddle-chupacabra.jpg" class="tile-img" alt="Chupacabra"></div>
+      <div class="tile-info"><div class="tile-series">Southwest Series</div><div class="tile-name">Chupacabra Hunt Club</div><div class="tile-est">EST. 1905</div></div>
+    </div>
+    <div class="paddle-tile reveal rd2">
+      <div class="tile-badge collector">Collector</div>
+      <div class="tile-hover"><button class="tile-hover-btn" onclick="openModal(event)">Back This Paddle</button></div>
+      <div class="tile-img-wrap"><img src="hero-paddle-constellation.jpg" class="tile-img" alt="Constellation"></div>
+      <div class="tile-info"><div class="tile-series">Cosmos Series</div><div class="tile-name">Bigfoot Constellation</div><div class="tile-est">EST. 2026</div></div>
+    </div>
+    <div class="paddle-tile reveal rd3">
+      <div class="tile-badge limited">Limited</div>
+      <div class="tile-hover"><button class="tile-hover-btn" onclick="openModal(event)">Back This Paddle</button></div>
+      <div class="tile-img-wrap"><img src="hero-paddle-evolution.jpg" class="tile-img" alt="Evolution"></div>
+      <div class="tile-info"><div class="tile-series">Origin Series</div><div class="tile-name">The Evolution</div><div class="tile-est">EST. 2026</div></div>
     </div>
   </div>
 </section>
 
 <section id="why" class="why-section">
   <div class="section-header">
-    <div>
-      <div class="section-eyebrow reveal">— Built Different</div>
-      <h2 class="section-title reveal">Why Squach<br>Paddles.</h2>
-    </div>
+    <div class="section-pre reveal">— The Craft</div>
+    <h2 class="section-title reveal">Built for<br><span class="g">Legends.</span></h2>
   </div>
   <div class="why-grid">
-    <div class="why-feature reveal"><div class="feature-num">01</div><span class="feature-icon">🏓</span><div class="feature-title">Carbon Fiber Face</div><p class="feature-body">16mm polypropylene honeycomb core with carbon fiber face for maximum pop, precision, and touch. Tournament-grade construction that outperforms paddles twice the price.</p></div>
-    <div class="why-feature reveal reveal-delay-1"><div class="feature-num">02</div><span class="feature-icon">🌌</span><div class="feature-title">Galaxy Sublimation</div><p class="feature-body">Full-wrap galaxy sublimation print. Each colorway is a unique interstellar scene — no two paddles look the same from across the court. Nobody is doing this.</p></div>
-    <div class="why-feature reveal reveal-delay-2"><div class="feature-num">03</div><span class="feature-icon">🛸</span><div class="feature-title">Original Characters</div><p class="feature-body">Bigfoot, UFOs, cosmic footprints — all original SquachAcers artwork. Trademarked designs that make a statement before you even serve.</p></div>
-    <div class="why-feature reveal reveal-delay-3"><div class="feature-num">04</div><span class="feature-icon">🏆</span><div class="feature-title">USAPA Approved</div><p class="feature-body">Designed to meet USAPA tournament specifications. Play competitively or recreationally — these paddles deliver at every level. Style and substance, no compromise.</p></div>
+    <div class="why-card reveal"><div class="why-bg-num">01</div><span class="why-icon">🪵</span><div class="why-title">Wood Carved Aesthetic</div><p class="why-body">UV printing with matte texture coating replicates the depth and shadow of hand-carved walnut on tournament-grade carbon fiber. Nobody in pickleball is doing this.</p></div>
+    <div class="why-card reveal rd1"><div class="why-bg-num">02</div><span class="why-icon">⚡</span><div class="why-title">Carbon Fiber Performance</div><p class="why-body">16mm polypropylene honeycomb core with carbon fiber face. Maximum pop, precision dinking, and touch. USAPA approved. Art on the outside, weapon on the inside.</p></div>
+    <div class="why-card reveal rd2"><div class="why-bg-num">03</div><span class="why-icon">🌌</span><div class="why-title">A Universe of Cryptids</div><p class="why-body">Bigfoot. The Kraken. Mothman. Loch Ness. Chupacabra. Every cryptid has a fanbase. Every fanbase needs a paddle. The first paddle line built for all of them.</p></div>
+    <div class="why-card reveal rd3"><div class="why-bg-num">04</div><span class="why-icon">🏆</span><div class="why-title">Collectible by Design</div><p class="why-body">Every paddle is limited to founding backer quantities. Once they're gone, they're gone. This isn't just a paddle — it's a collectible. People will frame these.</p></div>
   </div>
 </section>
 
 <section id="tiers" class="tiers-section">
   <div class="section-header">
-    <div>
-      <div class="section-eyebrow reveal">— Kickstarter Tiers</div>
-      <h2 class="section-title reveal">Back the Launch.</h2>
-    </div>
-    <p class="reveal" style="max-width:300px;font-size:13px;color:rgba(245,245,240,0.42);font-weight:300;line-height:1.75;">Founding backer prices disappear after June 3. These are the best prices these paddles will ever be.</p>
+    <div class="section-pre reveal">— Kickstarter Tiers</div>
+    <h2 class="section-title reveal">Back the <span class="g">Launch.</span></h2>
+    <p class="section-sub reveal">Founding backer prices disappear on June 3. These are the best prices these paddles will ever be.</p>
   </div>
   <div class="tiers-grid">
     <div class="tier-card reveal">
+      <div class="tier-top-bar"></div>
       <div class="tier-name">Squach Fan</div>
       <div class="tier-price">$29</div>
       <div class="tier-retail">Retail: <s>$49</s></div>
@@ -455,82 +519,86 @@ footer { background: #040404; border-top: 1px solid var(--border); padding: 60px
         <li>Founding Supporter badge</li>
         <li>Early access to future drops</li>
       </ul>
-      <button class="tier-btn tier-btn-ghost" onclick="openModal(event)">Join Waitlist</button>
+      <button class="tier-btn tier-btn-outline" onclick="openModal(event)">Join Waitlist</button>
     </div>
-    <div class="tier-card featured reveal reveal-delay-1">
-      <div class="tier-popular">Most Popular</div>
-      <div class="tier-name">Squach Player</div>
+    <div class="tier-card featured reveal rd1">
+      <div class="tier-popular">✦ Most Popular ✦</div>
+      <div class="tier-name" style="margin-top:40px;">Squach Player</div>
       <div class="tier-price">$89</div>
       <div class="tier-retail">Retail: <s>$149</s></div>
       <ul class="tier-items">
-        <li>1 Squach Paddle — your colorway</li>
+        <li>1 Cryptid Paddle — your choice</li>
         <li>2 exclusive backer patches</li>
         <li>Paddle sleeve + carry bag</li>
         <li>Founding Supporter status</li>
         <li>Name in the Squach origin story</li>
       </ul>
-      <button class="tier-btn tier-btn-primary" onclick="openModal(event)">Back This Tier</button>
+      <button class="tier-btn tier-btn-gold" onclick="openModal(event)">Back This Tier</button>
     </div>
-    <div class="tier-card reveal reveal-delay-2">
+    <div class="tier-card reveal rd2">
+      <div class="tier-top-bar"></div>
       <div class="tier-name">Squach Squad</div>
       <div class="tier-price">$199</div>
       <div class="tier-retail">Retail: <s>$349</s></div>
       <ul class="tier-items">
-        <li>2 paddles — both colorways</li>
+        <li>2 paddles — your choice of cryptids</li>
         <li>Full founding patch collection (all 4)</li>
         <li>Exclusive Squach Squad hoodie</li>
         <li>Lifetime 20% discount</li>
         <li>Video call with the founder</li>
       </ul>
-      <button class="tier-btn tier-btn-ghost" onclick="openModal(event)">Join Waitlist</button>
+      <button class="tier-btn tier-btn-outline" onclick="openModal(event)">Join Waitlist</button>
     </div>
   </div>
 </section>
 
 <section id="characters" class="chars-section">
   <div class="section-header">
-    <div>
-      <div class="section-eyebrow reveal">— The Universe</div>
-      <h2 class="section-title reveal">Meet the Characters.</h2>
-    </div>
+    <div class="section-pre reveal">— The Universe</div>
+    <h2 class="section-title reveal">Meet the <span class="g">Legends.</span></h2>
+    <p class="section-sub reveal">Every cryptid has a story. Every story lives on a paddle. The SquachAcers universe is just getting started.</p>
   </div>
   <div class="chars-grid">
-    <div class="char-card reveal"><span class="char-emoji">🦶</span><div class="char-name">Galaxy Squatch</div><p class="char-desc">The original. Wandering the cosmos leaving footprints across galaxies.</p><span class="char-label">Flagship</span></div>
-    <div class="char-card reveal reveal-delay-1"><span class="char-emoji">🛸</span><div class="char-name">Abduction Squatch</div><p class="char-desc">Classic upside-down in the tractor beam. Unbothered. It's not the first time.</p><span class="char-label">Limited</span></div>
-    <div class="char-card reveal reveal-delay-2"><span class="char-emoji">👽</span><div class="char-name">CE-5 Contact</div><p class="char-desc">Peace and interspecies diplomacy. Bigfoot's otherworldly business partner.</p><span class="char-label">Collector</span></div>
-    <div class="char-card reveal reveal-delay-3"><span class="char-emoji">🌲</span><div class="char-name">Forest Kapture</div><p class="char-desc">Deep in the Florida wilderness. UFO overhead. Still not moving.</p><span class="char-label">Founding</span></div>
+    <div class="char-card reveal"><span class="char-emoji">🦶</span><div class="char-name">Galaxy Squatch</div><p class="char-desc">The original. Wandering the cosmos leaving footprints across galaxies.</p><span class="char-tag">Flagship</span></div>
+    <div class="char-card reveal rd1"><span class="char-emoji">👽</span><div class="char-name">CE-5 Contact</div><p class="char-desc">Forest. Moon. Silver eyes. Bigfoot's otherworldly neighbor.</p><span class="char-tag">Collector</span></div>
+    <div class="char-card reveal rd2"><span class="char-emoji">🦑</span><div class="char-name">The Kraken</div><p class="char-desc">Deep sea. Ship-wrecker. Carved in walnut. EST. 1872.</p><span class="char-tag">Limited</span></div>
+    <div class="char-card reveal rd3"><span class="char-emoji">🏴󠁧󠁢󠁳󠁣󠁴󠁿</span><div class="char-name">Loch Ness</div><p class="char-desc">Scottish castle. Ancient loch. The most famous mystery in the world.</p><span class="char-tag">Founding</span></div>
+    <div class="char-card reveal"><span class="char-emoji">🦇</span><div class="char-name">Mothman</div><p class="char-desc">Point Pleasant. Red eyes. Wings in the dark. EST. 1966.</p><span class="char-tag">Rare</span></div>
+    <div class="char-card reveal rd1"><span class="char-emoji">🌵</span><div class="char-name">Chupacabra</div><p class="char-desc">Desert hunter. Southwest legend. The goat-eater. EST. 1905.</p><span class="char-tag">Southwest</span></div>
+    <div class="char-card reveal rd2"><span class="char-emoji">⭐</span><div class="char-name">Constellation</div><p class="char-desc">Stars form the silhouette. Bigfoot written in the sky.</p><span class="char-tag">Cosmos</span></div>
+    <div class="char-card reveal rd3"><span class="char-emoji">🧬</span><div class="char-name">The Evolution</div><p class="char-desc">Humans becoming Squatch. The most viral paddle ever made.</p><span class="char-tag">Origin</span></div>
   </div>
 </section>
 
-<section id="signup" class="email-section">
-  <div class="email-left">
-    <div class="email-eyebrow">Join the Founding Squad</div>
-    <h2 class="email-title">Be First.<br>Save Most.</h2>
-    <p class="email-sub">Founding Squad gets 24-hour early access before the public. Lock in the best price these paddles will ever be.</p>
+<section id="signup" class="email-band">
+  <div class="eb-left">
+    <div class="eb-pre">Join the Founding Squad</div>
+    <h2 class="eb-title">Be First.<br><span style="color:var(--gold);">Save Most.</span></h2>
+    <p class="eb-sub">Founding Squad gets 24-hour early access before the public. Lock in the best price these paddles will ever be.</p>
   </div>
-  <div class="email-right">
-    <div class="email-perks">
+  <div class="eb-right">
+    <div class="eb-perks">
       <div class="perk">24-hour early access before public launch</div>
       <div class="perk">Exclusive founding backer discount code</div>
-      <div class="perk">First look at new colorways and drops</div>
-      <div class="perk">One launch notification — no spam, ever</div>
+      <div class="perk">First look at new cryptid drops</div>
+      <div class="perk">One notification only — no spam, ever</div>
     </div>
-    <a href="#" class="btn-primary" onclick="openModal(event)" style="display:inline-block;">🛸 Join the Founding Squad</a>
+    <a href="#" class="btn-gold" onclick="openModal(event)" style="display:inline-block;">✦ Join the Founding Squad</a>
   </div>
 </section>
 
 <footer>
-  <div class="footer-top">
+  <div class="footer-grid">
     <div>
-      <a href="https://squachacers.com" class="footer-logo-link">Squach<span>Acers™</span></a>
-      <p class="footer-desc">Pickleball paddles built for players who refuse to be boring. Galaxy colorways. Original characters. Tournament-grade construction.</p>
+      <a href="https://squachacers.com" class="footer-logo">Squach<span>Acers™</span></a>
+      <p class="footer-desc">The Cryptid Collectors' Series. Tournament-grade carbon fiber paddles with wood-carved aesthetics. Every legend. Every court.</p>
     </div>
     <div>
-      <div class="footer-col-title">Paddles</div>
+      <div class="footer-col-title">Collection</div>
       <ul class="footer-links">
-        <li><a href="#paddles">All Colorways</a></li>
+        <li><a href="#collection">All Cryptids</a></li>
         <li><a href="#tiers">Backer Tiers</a></li>
-        <li><a href="#characters">Characters</a></li>
+        <li><a href="#characters">The Universe</a></li>
         <li><a href="#" onclick="openModal(event)">Join Waitlist</a></li>
       </ul>
     </div>
@@ -546,16 +614,16 @@ footer { background: #040404; border-top: 1px solid var(--border); padding: 60px
       <ul class="footer-links">
         <li><a href="#" onclick="openModal(event)">Get In Touch</a></li>
         <li><a href="#" onclick="openModal(event)">Media Inquiries</a></li>
-        <li><a href="https://squachacers.com">Quincy, Florida</a></li>
+        <li><a href="#">Quincy, Florida</a></li>
       </ul>
     </div>
   </div>
   <div class="footer-bottom">
     <div class="footer-copy">© 2026 SquachAcers™ — Trademark Filed · Patent Pending · All Rights Reserved</div>
     <div class="footer-badges">
-      <span class="badge-pill">USAPA Approved</span>
-      <span class="badge-pill">Patent Pending</span>
-      <span class="badge-pill">Trademark Filed</span>
+      <span class="fbadge">USAPA Approved</span>
+      <span class="fbadge">Patent Pending</span>
+      <span class="fbadge">Trademark Filed</span>
     </div>
   </div>
 </footer>
@@ -563,64 +631,77 @@ footer { background: #040404; border-top: 1px solid var(--border); padding: 60px
 </div>
 
 <script>
-function buildStars(id, count) {
-  const el = document.getElementById(id);
-  if (!el) return;
-  for (let i = 0; i < count; i++) {
-    const s = document.createElement('div');
-    s.className = 'star';
-    const sz = Math.random() * 2.5 + 0.5;
-    s.style.cssText = `width:${sz}px;height:${sz}px;left:${Math.random()*100}%;top:${Math.random()*100}%;--dur:${Math.random()*4+2}s;--delay:${Math.random()*4}s;--mn:${Math.random()*0.1};--mx:${Math.random()*0.5+0.15};`;
+const cur=document.getElementById('cur'),curR=document.getElementById('curR');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px';});
+(function animR(){rx+=(mx-rx)*.1;ry+=(my-ry)*.1;curR.style.left=rx+'px';curR.style.top=ry+'px';requestAnimationFrame(animR);})();
+document.querySelectorAll('a,button').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{cur.classList.add('big');curR.classList.add('big');});
+  el.addEventListener('mouseleave',()=>{cur.classList.remove('big');curR.classList.remove('big');});
+});
+
+function makeStars(id,count,cls){
+  const el=document.getElementById(id);if(!el)return;
+  for(let i=0;i<count;i++){
+    const s=document.createElement('div');
+    const sz=Math.random()*2.5+.4;
+    s.className=cls;
+    s.style.cssText=`width:${sz}px;height:${sz}px;left:${Math.random()*100}%;top:${Math.random()*100}%;--d:${Math.random()*4+2}s;--dl:${Math.random()*5}s;--mn:${Math.random()*.08};--mx:${Math.random()*.7+.1};`;
     el.appendChild(s);
   }
 }
-buildStars('introStars', 120);
-buildStars('heroStars', 70);
+makeStars('introStars',200,'cosmos-star');
+makeStars('heroStars',80,'hstar');
 
-function enterSite() {
+function enterSite(){
   document.getElementById('intro').classList.add('hide');
   document.getElementById('main').classList.add('show');
   document.body.classList.remove('no-scroll');
 }
-setTimeout(enterSite, 4200);
+setTimeout(enterSite,5000);
 
-function updateCD() {
-  const diff = new Date('2026-06-03T09:00:00') - new Date();
-  if (diff <= 0) { ['cd-days','cd-hours','cd-mins','cd-secs'].forEach(id => document.getElementById(id).textContent='00'); return; }
-  document.getElementById('cd-days').textContent = String(Math.floor(diff/86400000)).padStart(2,'0');
-  document.getElementById('cd-hours').textContent = String(Math.floor((diff%86400000)/3600000)).padStart(2,'0');
-  document.getElementById('cd-mins').textContent = String(Math.floor((diff%3600000)/60000)).padStart(2,'0');
-  document.getElementById('cd-secs').textContent = String(Math.floor((diff%60000)/1000)).padStart(2,'0');
+function updateCD(){
+  const diff=new Date('2026-06-03T09:00:00')-new Date();
+  if(diff<=0){['cdD','cdH','cdM','cdS'].forEach(id=>document.getElementById(id).textContent='00');return;}
+  document.getElementById('cdD').textContent=String(Math.floor(diff/86400000)).padStart(2,'0');
+  document.getElementById('cdH').textContent=String(Math.floor((diff%86400000)/3600000)).padStart(2,'0');
+  document.getElementById('cdM').textContent=String(Math.floor((diff%3600000)/60000)).padStart(2,'0');
+  document.getElementById('cdS').textContent=String(Math.floor((diff%60000)/1000)).padStart(2,'0');
 }
-updateCD(); setInterval(updateCD, 1000);
+updateCD();setInterval(updateCD,1000);
 
-function openModal(e) { if(e) e.preventDefault(); document.getElementById('emailModal').classList.add('open'); document.body.style.overflow='hidden'; }
-function closeModal() { document.getElementById('emailModal').classList.remove('open'); document.body.style.overflow=''; }
-document.getElementById('emailModal').addEventListener('click', function(e) { if(e.target===this) closeModal(); });
-document.addEventListener('keydown', e => { if(e.key==='Escape') closeModal(); });
+let cp=0;
+const pads=document.querySelectorAll('.hero-paddle');
+const dots=document.querySelectorAll('.pdot');
+function setPaddle(i){pads[cp].classList.remove('active');dots[cp].classList.remove('active');cp=i;pads[cp].classList.add('active');dots[cp].classList.add('active');}
+setInterval(()=>setPaddle((cp+1)%pads.length),4000);
 
-function submitModal() {
-  const val = document.getElementById('modalEmail').value;
-  if (!val || !val.includes('@')) { document.getElementById('modalEmail').style.borderColor='#ff5c5c'; return; }
-  const sub = encodeURIComponent('SquachAcers Founding Squad Signup');
-  const bod = encodeURIComponent('Add me to the SquachAcers Founding Squad waitlist!\n\nEmail: ' + val);
-  window.location.href = `mailto:yetesquach@gmail.com?subject=${sub}&body=${bod}`;
+function openModal(e){if(e)e.preventDefault();document.getElementById('modal').classList.add('open');document.body.style.overflow='hidden';}
+function closeModal(){document.getElementById('modal').classList.remove('open');document.body.style.overflow='';}
+document.getElementById('modal').addEventListener('click',function(e){if(e.target===this)closeModal();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
+function submitModal(){
+  const val=document.getElementById('modalEmail').value;
+  if(!val||!val.includes('@')){document.getElementById('modalEmail').style.borderColor='#ff4444';return;}
+  const s=encodeURIComponent('SquachAcers Founding Squad — '+val);
+  const b=encodeURIComponent('Please add me to the SquachAcers Founding Squad waitlist!\n\nEmail: '+val+'\n\nI want early access to the Cryptid Collectors Series on June 3.');
+  window.location.href=`mailto:yetesquach@gmail.com?subject=${s}&body=${b}`;
   document.getElementById('modalForm').style.display='none';
   document.getElementById('modalSuccess').style.display='block';
 }
-document.addEventListener('keydown', e => { if(e.key==='Enter' && document.getElementById('emailModal').classList.contains('open')) submitModal(); });
+document.addEventListener('keydown',e=>{if(e.key==='Enter'&&document.getElementById('modal').classList.contains('open'))submitModal();});
 
-const obs = new IntersectionObserver(entries => { entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold: 0.1 });
-document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+const ro=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:.1});
+document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));
 
-document.querySelectorAll('a[href^="#"]').forEach(a => {
-  a.addEventListener('click', e => {
-    const id = a.getAttribute('href');
-    if (id==='#') return;
-    const t = document.querySelector(id);
-    if (t) { e.preventDefault(); t.scrollIntoView({ behavior:'smooth', block:'start' }); }
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    const id=a.getAttribute('href');
+    if(id==='#')return;
+    const t=document.querySelector(id);
+    if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'});}
   });
 });
 </script>
 </body>
-</html>
+  </html>
